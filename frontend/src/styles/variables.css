@@ -45,7 +45,7 @@
      Used by: David (ProductCard border), Ibrahim (Checkout form
      inputs), Oreoluwa (Login/SignUp inputs), John & Kingsley
      (dividers between FAQ items / pricing tiers). */
-  --color-border: #2a2a2a;
+  --color-border: rgba(255, 255, 255, 0.12);
 
   /* ⚠ CONFIRM EXACT SHADE — sample with DevTools eyedropper.
      The single accent color for every CTA button ("Shop Now",
@@ -153,7 +153,7 @@
   /* Max width of the centered content area — wrap your page's
      outermost content div in this so text/grids don't stretch
      edge-to-edge on large monitors. Used by: everyone, every page. */
-  --container-max-width: 1280px;
+  --container-max-width: 1440px;
 
   /* Button heights — live inside the shared Button component
      only. Gerald builds/maintains these; everyone else just
