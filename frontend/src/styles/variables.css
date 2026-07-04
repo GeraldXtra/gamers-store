@@ -1,0 +1,183 @@
+/* 
+   Usage: import this file once at your app root (e.g. index.css / App.css)
+   and reference the variables anywhere via var(--token-name). */
+
+:root {
+  /* 
+     1. BACKGROUND COLORS
+      */
+  --color-bg-page: #0c0c11; /* Main page background (near-black, slight blue tint) */
+  --color-bg-header: #121218; /* Top utility bar + main nav background */
+  --color-bg-header-strip: #17171f; /* Thin top announcement strip */
+  --color-bg-section-alt: #000000; /* Full-black section background (Top Rated / Featured) */
+  --color-bg-card: #16161d; /* Product card background */
+  --color-bg-card-hover: #1c1c24; /* Product card hover state */
+  --color-bg-promo-tile: #1a1a21; /* Promo/banner tile background (EZ-77 PC, Discount tiles) */
+  --color-bg-footer: #0a0a0e; /* Footer background */
+  --color-bg-input: #1a1a20; /* Newsletter input field background */
+  --color-bg-overlay: rgba(0, 0, 0, 0.55); /* Image/hover overlays */
+
+  /* 
+     2. TEXT COLORS
+      */
+  --color-text-primary: #ffffff; /* Headings, product titles, prices */
+  --color-text-secondary: #b8b8c0; /* Body copy, nav links */
+  --color-text-muted: #7a7a85; /* Category eyebrows ("PREMIUM LAPTOPS"), timestamps */
+  --color-text-disabled: #55555f; /* Struck-through / old prices */
+  --color-text-link: #ffffff; /* Footer link text */
+  --color-text-link-hover: #4d7cff; /* Footer link hover */
+  --color-text-inverse: #0c0c11; /* Text on light/white surfaces (e.g. white badges) */
+
+  /* 
+     3. BRAND / ACCENT COLORS
+      */
+  --color-brand-primary: #3b5cf5; /* Primary CTA blue ("Shop Now" buttons, active tab, price divider) */
+  --color-brand-primary-hover: #2c47d6; /* Primary CTA blue — hover */
+  --color-brand-primary-active: #2038b0; /* Primary CTA blue — active/pressed */
+
+  --color-accent-orange: #e8792e; /* "NEW" badge, discount banner accents */
+  --color-accent-orange-hover: #cf6620;
+
+  /* 
+     4. STATUS / BADGE COLORS
+      */
+  --color-badge-sold-bg: #ffffff; /* "SOLD" badge background */
+  --color-badge-sold-text: #0c0c11; /* "SOLD" badge text */
+  --color-badge-new-bg: #e8792e; /* "NEW" badge background */
+  --color-badge-new-text: #ffffff;
+  --color-badge-sale-bg: #3b5cf5; /* "SALE" badge background */
+  --color-badge-sale-text: #ffffff;
+  --color-price-strikethrough: #6c6c78; /* Original price when discounted */
+  --color-wishlist-icon: #ffffff;
+  --color-wishlist-icon-active: #ef4d6a; /* Heart/wishlist active (red) */
+
+  /* 
+     5. BORDER / DIVIDER COLORS
+      */
+  --color-border-default: #24242c; /* Card borders, table dividers */
+  --color-border-subtle: #1a1a21; /* Faint section dividers */
+  --color-border-focus: #3b5cf5; /* Input/button focus ring */
+  --color-divider-accent: #3b5cf5; /* Blue horizontal divider under hero */
+
+  /* 
+     6. TYPOGRAPHY — FONT FAMILIES
+      */
+  --font-family-heading: "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-family-body: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-family-mono: "Roboto Mono", Consolas, monospace; /* SKU codes, prices if desired */
+
+  /* 
+     7. TYPOGRAPHY — FONT SIZES (type scale)
+      */
+  --font-size-xs: 0.75rem; /* 12px — badges, eyebrows, footer meta */
+  --font-size-sm: 0.875rem; /* 14px — nav links, card titles */
+  --font-size-base: 1rem; /* 16px — body copy */
+  --font-size-md: 1.125rem; /* 18px — product price */
+  --font-size-lg: 1.5rem; /* 24px — section titles ("Top Rated Products") */
+  --font-size-xl: 2rem; /* 32px — promo tile headings ("Limited Weekly Discount") */
+  --font-size-2xl: 2.75rem; /* 44px — hero heading ("Latest PC On The Market") */
+  --font-size-3xl: 3.5rem; /* 56px — large display / hero alt */
+
+  /* 
+     8. TYPOGRAPHY — FONT WEIGHTS
+      */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 
+     9. TYPOGRAPHY — LINE HEIGHTS
+      */
+  --line-height-tight: 1.15; /* Hero headings */
+  --line-height-snug: 1.35; /* Card titles */
+  --line-height-normal: 1.6; /* Body copy */
+
+  /* 
+     10. SPACING SCALE
+      */
+  --space-2xs: 0.25rem; /* 4px */
+  --space-xs: 0.5rem; /* 8px */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+  --space-4xl: 6rem; /* 96px — hero vertical padding */
+
+  /* 
+     11. BORDER RADIUS
+      */
+  --radius-sm: 4px; /* Badges */
+  --radius-md: 6px; /* Buttons, inputs */
+  --radius-lg: 10px; /* Product cards */
+  --radius-xl: 16px; /* Promo tiles */
+  --radius-pill: 999px; /* Cart count bubble, pill tabs ("Show All") */
+  --radius-circle: 50%; /* Icon buttons (search, wishlist, cart) */
+
+  /* 
+     12. BUTTON SIZING
+      */
+  /* Primary CTA button ("Shop Now") */
+  --button-primary-height: 44px;
+  --button-primary-padding-x: 1.5rem;
+  --button-primary-padding-y: 0.75rem;
+  --button-primary-font-size: var(--font-size-sm);
+  --button-primary-font-weight: var(--font-weight-semibold);
+  --button-primary-radius: var(--radius-md);
+
+  /* Small icon buttons (cart, search, wishlist, compare) */
+  --button-icon-size: 40px;
+  --button-icon-radius: var(--radius-circle);
+
+  /* Add-to-cart button on product card */
+  --button-cart-size: 36px;
+  --button-cart-radius: var(--radius-sm);
+
+  /* Tab / filter pill buttons ("Show All", "External SSDs") */
+  --button-pill-height: 36px;
+  --button-pill-padding-x: 1rem;
+  --button-pill-radius: var(--radius-pill);
+
+  /* 
+     13. SHADOWS / ELEVATION
+      */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-card-hover: 0 8px 24px rgba(59, 92, 245, 0.15);
+
+  /* 
+     14. LAYOUT / CONTAINER
+      */
+  --container-max-width: 1320px;
+  --container-padding-x: 1.5rem;
+  --grid-gap-cards: 1.5rem;
+  --header-height: 84px;
+  --header-strip-height: 36px;
+
+  /* 
+     15. TRANSITIONS
+      */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 400ms ease-in-out;
+
+  /* 
+     16. BREAKPOINTS (for reference — use in JS/matchMedia or CSS custom media)
+      */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-wide: 1440px;
+
+  /* 
+     17. Z-INDEX SCALE
+      */
+  --z-index-header: 100;
+  --z-index-dropdown: 200;
+  --z-index-modal: 300;
+  --z-index-toast: 400;
+}

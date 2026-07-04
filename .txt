@@ -1,0 +1,9 @@
+Please don't delete any folder or files. Don't modify or touch this texts please.
+# rename locally (works whether you're on that branch or not — specify old then new)
+git branch -m feature/member2-header-footer-wishlist feature/sarah-header-footer-wishlist
+
+# remove the old name from GitHub
+git push origin --delete feature/member2-header-footer-wishlist
+
+# push the new name and link it as the remote tracking branch
+git push -u origin feature/sarah-header-footer-wishlist
