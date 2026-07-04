@@ -6,18 +6,70 @@ This document is the single source of truth for the frontend build. Read your se
 
 ---
 
+## Design Variables — Quick Reference
+
+The full file (`styles/variables.css`) has a detailed comment above every single variable explaining exactly where to use it — read that while you're actually coding. This table is just for a fast lookup.
+
+| Variable                     | What it's for                    | Who needs it                                                            |
+| ---------------------------- | -------------------------------- | ----------------------------------------------------------------------- |
+| `--color-bg-primary`         | Main page background             | Everyone — every page                                                   |
+| `--color-bg-secondary`       | Card/panel backgrounds           | David, Ibrahim, Gerald, Oreoluwa, John, Kingsley                        |
+| `--color-bg-elevated`        | Hover state background           | Inside Button/ProductCard only — nobody touches directly                |
+| `--color-text-primary`       | Headings, primary text           | Everyone                                                                |
+| `--color-text-secondary`     | Descriptions, muted text         | Everyone                                                                |
+| `--color-border`             | Card outlines, input borders     | David, Ibrahim, Oreoluwa, John, Kingsley                                |
+| `--color-accent-primary`     | CTA button color, links          | Inside Button component — Oreoluwa also for the "Forgot password?" link |
+| `--color-accent-sale`        | Sale/discount badges             | David, Gerald, Ibrahim                                                  |
+| `--color-accent-cart`        | Cart badge, wishlist active icon | Gerald, David, Ibrahim                                                  |
+| `--font-heading`             | All headings                     | Everyone                                                                |
+| `--font-body`                | All body copy                    | Everyone                                                                |
+| `--font-size-xs`             | Badge text, form errors          | David, Oreoluwa, Ibrahim                                                |
+| `--font-size-sm`             | Nav, footer, descriptions        | Gerald, everyone's body copy                                            |
+| `--font-size-base`           | Default text size                | Everyone (default)                                                      |
+| `--font-size-lg`             | Sub-headings, card titles        | David, John, Kingsley                                                   |
+| `--font-size-xl`             | Page title (top of each page)    | Everyone, once per page                                                 |
+| `--font-size-2xl`            | Hero headline only               | Gerald only (Home)                                                      |
+| `--space-xs` → `--space-2xl` | Spacing scale (4px → 48px)       | Everyone — see full file for which gap size fits which use              |
+| `--container-max-width`      | Centered content wrapper         | Everyone, every page                                                    |
+| `--button-height-sm/md`      | Button sizing                    | Inside Button component only                                            |
+| `--radius-sm/md`             | Border-radius                    | Everyone, any rounded corner                                            |
+
+---
+
 ## Team & Page Ownership
 
-| Member            | Branch                                  | Pages you own                                                                       |
-| ----------------- | --------------------------------------- | ----------------------------------------------------------------------------------- |
-| **Gerald** (Lead) | `feature/gerald-home`                   | Home (entire homepage: hero, all product grids, banners)                            |
-| **Oreoluwa**      | `feature/oreoluwa-login-signup-account` | Login, Sign Up, Account Settings                                                    |
-| **David**         | `feature/david-shop-product`            | Shop, Single Product                                                                |
-| **Ibrahim**       | `feature/ibrahim-wishlist-checkout`     | Wishlist, Checkout (cart review + shipping + order summary, combined into one page) |
-| **John**          | `feature/john-static-pages`             | About, FAQ, Contact Us, Get In Touch                                                |
-| **Kingsley**      | `feature/kingsley-static-pages`         | Terms and Conditions, Store Locator, Pricing Plans                                  |
+| Member            | Branch                                          | Pages you own                                                                       |
+| ----------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Gerald** (Lead) | `feature/gerald-home`                           | Home (entire homepage: hero, all product grids, banners)                            |
+| **Oreoluwa**      | `feature/oreoluwa-login-signup-accountSettings` | Login, Sign Up, Account Settings                                                    |
+| **David**         | `feature/david-shop-product`                    | Shop, Single Product                                                                |
+| **Ibrahim**       | `feature/ibrahim-wishlist-checkout`             | Wishlist, Checkout (cart review + shipping + order summary, combined into one page) |
+| **John**          | `feature/john-static-pages`                     | About, FAQ, Contact Us, Get In Touch                                                |
+| **Kingsley**      | `feature/kingsley-static-pages`                 | Terms and Conditions, Store Locator, Pricing Plans                                  |
 
 **15 pages total.** Everyone builds inside their own `pages/` folder(s) and, where noted below, their own `services/` file. Nobody edits another member's page folder without asking first.
+
+---
+
+## Reference Pages — What Each Page Should Actually Look Like
+
+We're using **Gizmos**, a real electronics/gaming store theme, as our visual reference. Every page below is a real, live page on the official demo — open it, study the layout, then build your own version in React. This is for **visual/UX reference only** — it's a WordPress/WooCommerce site, not code to copy.
+
+| Page                               | Owner    | Live Reference                                                                                                                                                                                                                         |
+| ---------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Home                               | Gerald   | https://gizmos.qodeinteractive.com/                                                                                                                                                                                                    |
+| About                              | John     | https://gizmos.qodeinteractive.com/about-us/                                                                                                                                                                                           |
+| FAQ                                | John     | https://gizmos.qodeinteractive.com/faq-page/                                                                                                                                                                                           |
+| Contact Us                         | John     | https://gizmos.qodeinteractive.com/contact-us/                                                                                                                                                                                         |
+| Get In Touch                       | John     | https://gizmos.qodeinteractive.com/get-in-touch/                                                                                                                                                                                       |
+| Terms and Conditions               | Kingsley | https://gizmos.qodeinteractive.com/terms-conditions/                                                                                                                                                                                   |
+| Store Locator                      | Kingsley | https://gizmos.qodeinteractive.com/store-locator/                                                                                                                                                                                      |
+| Pricing Plans                      | Kingsley | https://gizmos.qodeinteractive.com/pricing-plans/                                                                                                                                                                                      |
+| Shop                               | David    | https://gizmos.qodeinteractive.com/shop/                                                                                                                                                                                               |
+| Single Product                     | David    | https://gizmos.qodeinteractive.com/product/fractal-design-s7-tempered-glass-computer-case/ _(one example — every product follows the same `/product/product-name/` layout)_                                                            |
+| Login / Sign Up / Account Settings | Oreoluwa | https://gizmos.qodeinteractive.com/my-account/ _(WooCommerce combines all three into this one page — login form and register form side by side, becomes the account dashboard once logged in)_                                         |
+| Wishlist                           | Ibrahim  | https://gizmos.qodeinteractive.com/wishlist/                                                                                                                                                                                           |
+| Checkout                           | Ibrahim  | https://gizmos.qodeinteractive.com/checkout/ **and** https://gizmos.qodeinteractive.com/cart/ _(look at both — yours combines them into one page, so borrow the item-list layout from Cart and the form/summary layout from Checkout)_ |
 
 ---
 

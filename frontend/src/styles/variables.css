@@ -1,183 +1,170 @@
 /* 
-   Usage: import this file once at your app root (e.g. index.css / App.css)
-   and reference the variables anywhere via var(--token-name). */
+   styles/variables.css
+   Owner: Gerald
+   Import this ONCE in main.jsx — every page and component then
+   has access to every variable below, automatically, with no
+   import needed in individual .module.css files.
+    */
 
 :root {
   /* 
-     1. BACKGROUND COLORS
+     COLORS
       */
-  --color-bg-page: #0c0c11; /* Main page background (near-black, slight blue tint) */
-  --color-bg-header: #121218; /* Top utility bar + main nav background */
-  --color-bg-header-strip: #17171f; /* Thin top announcement strip */
-  --color-bg-section-alt: #000000; /* Full-black section background (Top Rated / Featured) */
-  --color-bg-card: #16161d; /* Product card background */
-  --color-bg-card-hover: #1c1c24; /* Product card hover state */
-  --color-bg-promo-tile: #1a1a21; /* Promo/banner tile background (EZ-77 PC, Discount tiles) */
-  --color-bg-footer: #0a0a0e; /* Footer background */
-  --color-bg-input: #1a1a20; /* Newsletter input field background */
-  --color-bg-overlay: rgba(0, 0, 0, 0.55); /* Image/hover overlays */
+
+  /* Main page background. Use on the outermost wrapper of
+     EVERY page — all 15 pages, all 6 people. This is the base
+     color the whole site sits on top of. */
+  --color-bg-primary: #0d0d0d;
+
+  /* Background for anything that sits "on top of" the main
+     background: cards, panels, boxes.
+     Used by: David (ProductCard, Shop grid), Ibrahim (Wishlist
+     cards, Checkout order-summary box), Gerald (Home's product
+     grids, Banners), Oreoluwa (Login/SignUp/AccountSettings form
+     container), John & Kingsley (content boxes on static pages). */
+  --color-bg-secondary: #1a1a1a;
+
+  /* Hover/active state background — one shade lighter than
+     bg-secondary. Used inside the shared Button and ProductCard
+     components only (Gerald builds these) — everyone else gets
+     this automatically just by using those components. */
+  --color-bg-elevated: #232323;
+
+  /* All headings and primary body text (white on dark).
+     Used on every page, every heading, every important line. */
+  --color-text-primary: #ffffff;
+
+  /* Muted/secondary text — descriptions, captions, helper text,
+     timestamps. Used by: David (product descriptions), John
+     (FAQ answers), Oreoluwa (form helper/error text), everyone's
+     "secondary" copy. If it's not a heading and not the main
+     point of the sentence, it's probably this color. */
+  --color-text-secondary: #a3a3a3;
+
+  /* Card outlines, section dividers, input field borders.
+     Used by: David (ProductCard border), Ibrahim (Checkout form
+     inputs), Oreoluwa (Login/SignUp inputs), John & Kingsley
+     (dividers between FAQ items / pricing tiers). */
+  --color-border: #2a2a2a;
+
+  /* ⚠ CONFIRM EXACT SHADE — sample with DevTools eyedropper.
+     The single accent color for every CTA button ("Shop Now",
+     "Add to Cart", "Submit", "Place Order") and standalone links.
+     Lives inside the shared Button component (Gerald builds it),
+     so most people never touch this directly — EXCEPT wherever
+     a plain link needs to match, e.g. Oreoluwa's "Forgot
+     password?" link on the Login page. */
+  --color-accent-primary: #2563eb;
+
+  /* ⚠ CONFIRM EXACT SHADE.
+     Sale/discount badges only.
+     Used by: David (ProductCard sale badge on Shop + ProductDetail),
+     Gerald (Home's product grids, since they reuse ProductCard),
+     Ibrahim (discounted items on Wishlist). */
+  --color-accent-sale: #f97316;
+
+  /* ⚠ CONFIRM EXACT SHADE.
+     Cart icon badge count (Gerald's Header) and the wishlist
+     heart icon's "filled/active" state — appears anywhere
+     ProductCard's heart icon shows up: Gerald (Home), David
+     (Shop, ProductDetail), Ibrahim (Wishlist). */
+  --color-accent-cart: #ef4444;
 
   /* 
-     2. TEXT COLORS
+     TYPOGRAPHY
       */
-  --color-text-primary: #ffffff; /* Headings, product titles, prices */
-  --color-text-secondary: #b8b8c0; /* Body copy, nav links */
-  --color-text-muted: #7a7a85; /* Category eyebrows ("PREMIUM LAPTOPS"), timestamps */
-  --color-text-disabled: #55555f; /* Struck-through / old prices */
-  --color-text-link: #ffffff; /* Footer link text */
-  --color-text-link-hover: #4d7cff; /* Footer link hover */
-  --color-text-inverse: #0c0c11; /* Text on light/white surfaces (e.g. white badges) */
+
+  /* ⚠ NOT VERIFIED — check the Computed tab on any heading on
+     the live reference site. All headings (h1–h6), every page. */
+  --font-heading: "Inter", sans-serif;
+
+  /* ⚠ NOT VERIFIED. All paragraph/body copy, every page. */
+  --font-body: "Inter", sans-serif;
+
+  /* Smallest text — badge labels, timestamps, form validation
+     messages. Used by: David (badge text), Oreoluwa (form error
+     text), Ibrahim (checkout fine print). */
+  --font-size-xs: 12px;
+
+  /* Secondary text — nav links, footer text, product
+     descriptions. Used by: Gerald (Header nav, Footer),
+     everyone's body copy that isn't the main paragraph size. */
+  --font-size-sm: 14px;
+
+  /* THE DEFAULT. If you're not sure which size to use for plain
+     text, use this one. Every page. */
+  --font-size-base: 16px;
+
+  /* Sub-headings and emphasized labels — product names inside
+     ProductCard, FAQ question text, pricing tier names.
+     Used by: David, John, Kingsley. */
+  --font-size-lg: 20px;
+
+  /* Page title — the heading at the top of each page ("Shop",
+     "Wishlist", "Checkout", "FAQ"). One per page, every page. */
+  --font-size-xl: 28px;
+
+  /* Hero heading ONLY — the large "Latest PC On The Market"
+     style headline. Used only by Gerald, only on Home. Nobody
+     else needs this one. */
+  --font-size-2xl: 36px;
 
   /* 
-     3. BRAND / ACCENT COLORS
+     SPACING
+     Think of these as your only options for gaps and padding —
+     if you're about to type a random pixel value, check here
+     for the closest match first, so spacing stays consistent
+     across all 15 pages.
       */
-  --color-brand-primary: #3b5cf5; /* Primary CTA blue ("Shop Now" buttons, active tab, price divider) */
-  --color-brand-primary-hover: #2c47d6; /* Primary CTA blue — hover */
-  --color-brand-primary-active: #2038b0; /* Primary CTA blue — active/pressed */
 
-  --color-accent-orange: #e8792e; /* "NEW" badge, discount banner accents */
-  --color-accent-orange-hover: #cf6620;
+  /* Tightest gap — icon-to-text spacing, inside a badge.
+     Used by: David (icon next to "Add to Cart" text). */
+  --space-xs: 4px;
+
+  /* Small gap between closely related elements — form label to
+     its input, a star rating to its review count.
+     Used by: Oreoluwa (form labels), David (ProductCard rating). */
+  --space-sm: 8px;
+
+  /* THE DEFAULT internal padding — inside cards, buttons, form
+     inputs. This is the one you'll reach for most often, on
+     every page. */
+  --space-md: 16px;
+
+  /* Gap between sections within a single page — e.g. the space
+     between a section heading and the grid below it.
+     Used by: everyone, between any two "blocks" on their page. */
+  --space-lg: 24px;
+
+  /* Larger gap between major page sections — between Home's
+     Hero and the category row (Gerald), or between a page's
+     title and its main content (everyone else). */
+  --space-xl: 32px;
+
+  /* Outermost page padding — top and bottom space around a
+     whole page's content, and the space around Home's Hero.
+     Used by: everyone, once per page, as the outermost wrapper. */
+  --space-2xl: 48px;
 
   /* 
-     4. STATUS / BADGE COLORS
+     SIZING
       */
-  --color-badge-sold-bg: #ffffff; /* "SOLD" badge background */
-  --color-badge-sold-text: #0c0c11; /* "SOLD" badge text */
-  --color-badge-new-bg: #e8792e; /* "NEW" badge background */
-  --color-badge-new-text: #ffffff;
-  --color-badge-sale-bg: #3b5cf5; /* "SALE" badge background */
-  --color-badge-sale-text: #ffffff;
-  --color-price-strikethrough: #6c6c78; /* Original price when discounted */
-  --color-wishlist-icon: #ffffff;
-  --color-wishlist-icon-active: #ef4d6a; /* Heart/wishlist active (red) */
 
-  /* 
-     5. BORDER / DIVIDER COLORS
-      */
-  --color-border-default: #24242c; /* Card borders, table dividers */
-  --color-border-subtle: #1a1a21; /* Faint section dividers */
-  --color-border-focus: #3b5cf5; /* Input/button focus ring */
-  --color-divider-accent: #3b5cf5; /* Blue horizontal divider under hero */
+  /* Max width of the centered content area — wrap your page's
+     outermost content div in this so text/grids don't stretch
+     edge-to-edge on large monitors. Used by: everyone, every page. */
+  --container-max-width: 1280px;
 
-  /* 
-     6. TYPOGRAPHY — FONT FAMILIES
-      */
-  --font-family-heading: "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-family-body: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-family-mono: "Roboto Mono", Consolas, monospace; /* SKU codes, prices if desired */
+  /* Button heights — live inside the shared Button component
+     only. Gerald builds/maintains these; everyone else just
+     passes size="sm" or size="md" as a prop, never touches the
+     pixel value directly. */
+  --button-height-sm: 36px;
+  --button-height-md: 44px;
 
-  /* 
-     7. TYPOGRAPHY — FONT SIZES (type scale)
-      */
-  --font-size-xs: 0.75rem; /* 12px — badges, eyebrows, footer meta */
-  --font-size-sm: 0.875rem; /* 14px — nav links, card titles */
-  --font-size-base: 1rem; /* 16px — body copy */
-  --font-size-md: 1.125rem; /* 18px — product price */
-  --font-size-lg: 1.5rem; /* 24px — section titles ("Top Rated Products") */
-  --font-size-xl: 2rem; /* 32px — promo tile headings ("Limited Weekly Discount") */
-  --font-size-2xl: 2.75rem; /* 44px — hero heading ("Latest PC On The Market") */
-  --font-size-3xl: 3.5rem; /* 56px — large display / hero alt */
-
-  /* 
-     8. TYPOGRAPHY — FONT WEIGHTS
-      */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-
-  /* 
-     9. TYPOGRAPHY — LINE HEIGHTS
-      */
-  --line-height-tight: 1.15; /* Hero headings */
-  --line-height-snug: 1.35; /* Card titles */
-  --line-height-normal: 1.6; /* Body copy */
-
-  /* 
-     10. SPACING SCALE
-      */
-  --space-2xs: 0.25rem; /* 4px */
-  --space-xs: 0.5rem; /* 8px */
-  --space-sm: 0.75rem; /* 12px */
-  --space-md: 1rem; /* 16px */
-  --space-lg: 1.5rem; /* 24px */
-  --space-xl: 2rem; /* 32px */
-  --space-2xl: 3rem; /* 48px */
-  --space-3xl: 4rem; /* 64px */
-  --space-4xl: 6rem; /* 96px — hero vertical padding */
-
-  /* 
-     11. BORDER RADIUS
-      */
-  --radius-sm: 4px; /* Badges */
-  --radius-md: 6px; /* Buttons, inputs */
-  --radius-lg: 10px; /* Product cards */
-  --radius-xl: 16px; /* Promo tiles */
-  --radius-pill: 999px; /* Cart count bubble, pill tabs ("Show All") */
-  --radius-circle: 50%; /* Icon buttons (search, wishlist, cart) */
-
-  /* 
-     12. BUTTON SIZING
-      */
-  /* Primary CTA button ("Shop Now") */
-  --button-primary-height: 44px;
-  --button-primary-padding-x: 1.5rem;
-  --button-primary-padding-y: 0.75rem;
-  --button-primary-font-size: var(--font-size-sm);
-  --button-primary-font-weight: var(--font-weight-semibold);
-  --button-primary-radius: var(--radius-md);
-
-  /* Small icon buttons (cart, search, wishlist, compare) */
-  --button-icon-size: 40px;
-  --button-icon-radius: var(--radius-circle);
-
-  /* Add-to-cart button on product card */
-  --button-cart-size: 36px;
-  --button-cart-radius: var(--radius-sm);
-
-  /* Tab / filter pill buttons ("Show All", "External SSDs") */
-  --button-pill-height: 36px;
-  --button-pill-padding-x: 1rem;
-  --button-pill-radius: var(--radius-pill);
-
-  /* 
-     13. SHADOWS / ELEVATION
-      */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
-  --shadow-card-hover: 0 8px 24px rgba(59, 92, 245, 0.15);
-
-  /* 
-     14. LAYOUT / CONTAINER
-      */
-  --container-max-width: 1320px;
-  --container-padding-x: 1.5rem;
-  --grid-gap-cards: 1.5rem;
-  --header-height: 84px;
-  --header-strip-height: 36px;
-
-  /* 
-     15. TRANSITIONS
-      */
-  --transition-fast: 150ms ease-in-out;
-  --transition-base: 250ms ease-in-out;
-  --transition-slow: 400ms ease-in-out;
-
-  /* 
-     16. BREAKPOINTS (for reference — use in JS/matchMedia or CSS custom media)
-      */
-  --breakpoint-mobile: 480px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-laptop: 1024px;
-  --breakpoint-desktop: 1280px;
-  --breakpoint-wide: 1440px;
-
-  /* 
-     17. Z-INDEX SCALE
-      */
-  --z-index-header: 100;
-  --z-index-dropdown: 200;
-  --z-index-modal: 300;
-  --z-index-toast: 400;
+  /* Border-radius — sm for small elements (badges, inputs),
+     md for cards and buttons. Used by: everyone, wherever
+     something has a rounded corner. */
+  --radius-sm: 4px;
+  --radius-md: 8px;
 }
