@@ -1,0 +1,222 @@
+import { useState } from "react";
+import styles from "./Checkout.module.css";
+
+// Temporary sample data — replace with real cart data from CartContext later
+const sampleCart = [
+  { id: 1, name: "Wireless Gaming Mouse", price: 45.99, quantity: 1 },
+  { id: 2, name: "Mechanical Keyboard", price: 89.99, quantity: 2 },
+];
+
+function Checkout() {
+  const [cartItems, setCartItems] = useState(sampleCart);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
+
+  const handleQuantityChange = (id, newQty) => {
+    if (newQty < 1) return;
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQty } : item
+      )
+    );
+  };
+
+  const handleRemove = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: connect to orderService.js to submit the order
+    console.log("Order submitted:", { formData, cartItems });
+  };
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const shipping = subtotal > 0 ? 10 : 0;
+  const total = subtotal + shipping;
+
+  return (
+    <div className={styles.container}>
+      <p className={styles.breadcrumb}>Home / Checkout</p>
+      <h1 className={styles.title}>Checkout</h1>
+
+      {cartItems.length === 0 ? (
+        <p className={styles.empty}>Your cart is currently empty.</p>
+      ) : (
+        <form className={styles.layout} onSubmit={handleSubmit}>
+          {/* Left: Cart review + shipping form */}
+          <div className={styles.mainColumn}>
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>Your Cart</h2>
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Subtotal</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>${item.price.toFixed(2)}</td>
+                        <td>
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              handleQuantityChange(
+                                item.id,
+                                parseInt(e.target.value, 10)
+                              )
+                            }
+                            className={styles.quantityInput}
+                          />
+                        </td>
+                        <td>${(item.price * item.quantity).toFixed(2)}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className={styles.remove}
+                            onClick={() => handleRemove(item.id)}
+                            aria-label="Remove item"
+                          >
+                            ×
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>Shipping Details</h2>
+              <div className={styles.formRow}>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+              <div className={styles.formRow}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+              <input
+                type="text"
+                name="address"
+                placeholder="Street Address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className={styles.inputFull}
+                required
+              />
+              <div className={styles.formRow}>
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+                <input
+                  type="text"
+                  name="state"
+                  placeholder="State"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+                <input
+                  type="text"
+                  name="zip"
+                  placeholder="ZIP Code"
+                  value={formData.zip}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  required
+                />
+              </div>
+            </section>
+          </div>
+
+          {/* Right: Order summary */}
+          <aside className={styles.summary}>
+            <h2 className={styles.sectionTitle}>Order Summary</h2>
+            <div className={styles.summaryRow}>
+              <span>Subtotal</span>
+              <span>${subtotal.toFixed(2)}</span>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Shipping</span>
+              <span>${shipping.toFixed(2)}</span>
+            </div>
+            <div className={styles.summaryTotal}>
+              <span>Total</span>
+              <span>${total.toFixed(2)}</span>
+            </div>
+            <button type="submit" className={styles.placeOrder}>
+              Place Order
+            </button>
+          </aside>
+        </form>
+      )}
+    </div>
+  );
+}
+
+export default Checkout;
