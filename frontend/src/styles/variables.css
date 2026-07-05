@@ -134,7 +134,7 @@
   /* Gap between sections within a single page — e.g. the space
      between a section heading and the grid below it.
      Used by: everyone, between any two "blocks" on their page. */
-  --space-lg: 24px;
+  --space-lg: 30px;
 
   /* Larger gap between major page sections — between Home's
      Hero and the category row (Gerald), or between a page's
