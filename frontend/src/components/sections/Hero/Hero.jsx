@@ -91,7 +91,7 @@ const Hero = () => {
   return (
     <section className="hero">
       <button className="hero-arrow hero-arrow-left" onClick={prevSlide} aria-label="Previous slide">
-        <i class="bi bi-chevron-left"></i>
+        <i className="bi bi-chevron-left"></i>
       </button>
 
       <div className="hero-content">
@@ -99,7 +99,7 @@ const Hero = () => {
           <h1 className="hero-title">{slide.title}</h1>
           <p className="hero-subtitle">{slide.subtitle}</p>
           <a href={slide.ctaLink} className="hero-cta">
-            {slide.ctaText} <i class="bi bi-chevron-right"></i>
+            {slide.ctaText} <i className="bi bi-chevron-right"></i>
           </a>
         </div>
 
@@ -109,14 +109,14 @@ const Hero = () => {
       </div>
 
       <button className="hero-arrow hero-arrow-right" onClick={nextSlide} aria-label="Next slide">
-        <i class="bi bi-chevron-right"></i>
+        <i className="bi bi-chevron-right"></i>
       </button>
 
       {/* Progress line removed per your request — was here before, now gone */}
 
       <div className="hero-category-bar">
         <button className="hero-category-arrow hero-category-arrow-left" onClick={() => scrollCategories(-1)} disabled={categoryOffset === 0} aria-label="Scroll categories left">
-          <i class="bi bi-chevron-left"></i>
+          <i className="bi bi-chevron-left"></i>
         </button>
 
         <div className="hero-category-inner">
@@ -129,7 +129,7 @@ const Hero = () => {
               const realIndex = categoryOffset + i;
               return (
                 <button key={cat.id} className={`hero-category-item ${activeCategory === realIndex ? "hero-category-active" : ""}`} onClick={() => setActiveCategory(realIndex)}>
-                  <i class={`bi ${cat.icon}`}></i>
+                  <i className={`bi ${cat.icon}`}></i>
                   <span>{cat.label}</span>
                 </button>
               );
@@ -143,7 +143,7 @@ const Hero = () => {
           disabled={categoryOffset === maxCategoryOffset}
           aria-label="Scroll categories right"
         >
-          <i class="bi bi-chevron-right"></i>
+          <i className="bi bi-chevron-right"></i>
         </button>
       </div>
     </section>

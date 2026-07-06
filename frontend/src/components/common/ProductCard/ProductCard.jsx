@@ -47,10 +47,10 @@ const ProductCard = ({ product }) => {
             onClick={toggleWishlist}
             aria-label="Add to wishlist"
           >
-            <i class="bi bi-heart"></i>
+            <i className="bi bi-heart"></i>
           </button>
           <button className="product-card-icon-btn" aria-label="Compare">
-            <i class="bi bi-arrow-left-right"></i>
+            <i className="bi bi-arrow-left-right"></i>
           </button>
         </div>
 
@@ -63,6 +63,7 @@ const ProductCard = ({ product }) => {
         )}
 
         <img
+          key={imageIndex}
           src={images[imageIndex]}
           alt={product.name}
           className="product-card-image"
@@ -75,14 +76,14 @@ const ProductCard = ({ product }) => {
               onClick={prevImage}
               aria-label="Previous image"
             >
-              <i class="bi bi-chevron-left"></i>
+              <i className="bi bi-chevron-left"></i>
             </button>
             <button
               className="product-card-nav product-card-nav-right"
               onClick={nextImage}
               aria-label="Next image"
             >
-              <i class="bi bi-chevron-right"></i>
+              <i className="bi bi-chevron-right"></i>
             </button>
           </>
         )}
@@ -93,7 +94,7 @@ const ProductCard = ({ product }) => {
         <p className="product-card-price">{formatPrice(product.price)}</p>
 
         <button className="product-card-add-to-cart" onClick={handleAddToCart}>
-          ADD TO CART <i class="bi bi-cart"></i>
+          ADD TO CART <i className="bi bi-cart"></i>
         </button>
       </div>
     </div>

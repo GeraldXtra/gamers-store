@@ -1,9 +1,19 @@
 // components/sections/TopRatedProducts/TopRatedProducts.jsx
 import ProductCard from "../../common/ProductCard/ProductCard";
-import PromoCard from "../../common/PromoCard";
+import PromoCard from "../../common/PromoCard/PromoCard";
 import "./TopRatedProducts.css";
 import mouseImg from "./../../../assets/mouse-top-rated.png";
 import mouseImg2 from "./../../../assets/mouse-1-top-rated.png";
+import HDD from "./../../../assets/HDD.png";
+import HDD1 from "./../../../assets/HDD-1.png";
+import vrPromo from "./../../../assets/vr-promo.png";
+import headsetPromo from "./../../../assets/headset-promo.png";
+import gamingGlassCPU from "./../../../assets/gaming-glass-cpu.png";
+import gamingGlassCPU1 from "./../../../assets/gmaing-glass-cpu-1.png";
+import desktopMem from "./../../../assets/desktop-mem.png";
+import desktopMem1 from "./../../../assets/desktop-mem-1.png";
+import acerRedMonitor from "./../../../assets/acer-red-monitor.png";
+import acerBlueMonitor from "./../../../assets/acer-blue-monitor.png";
 
 const promos = [
   {
@@ -12,7 +22,7 @@ const promos = [
     subtitle: 'MF841HN/A 13"',
     label: "Starting at",
     price: "$1,750",
-    image: null, // TODO: add real image
+    image: vrPromo,
   },
   {
     id: "promo-2",
@@ -20,7 +30,7 @@ const promos = [
     subtitle: null,
     label: "Discount -30%",
     price: "$349",
-    image: null, // TODO: add real image
+    image: headsetPromo,
   },
 ];
 
@@ -39,10 +49,7 @@ const products = [
     name: "Fractal Design 850-PW Tempered Glass Computer Case",
     price: 2790,
     badge: "NEW",
-    images: [
-      "https://placehold.co/300x300/1a1a1a/666666?text=Case+1",
-      "https://placehold.co/300x300/1a1a1a/666666?text=Case+2",
-    ],
+    images: [gamingGlassCPU, gamingGlassCPU1],
   },
   {
     id: 3,
@@ -50,10 +57,7 @@ const products = [
     name: 'MBD214 147GB 10000 RPM 16MB Cache SAS 6Gb/s 2.5" Hard Drive',
     price: 2330,
     badge: null,
-    images: [
-      "https://placehold.co/300x300/1a1a1a/666666?text=HDD+1",
-      "https://placehold.co/300x300/1a1a1a/666666?text=HDD+2",
-    ],
+    images: [HDD, HDD1],
   },
   {
     id: 4,
@@ -61,21 +65,15 @@ const products = [
     name: "FTW-3553 8GB 2666MHz DDR4 DIMM Desktop Memory",
     price: 1280,
     badge: null,
-    images: [
-      "https://placehold.co/300x300/1a1a1a/666666?text=RAM+1",
-      "https://placehold.co/300x300/1a1a1a/666666?text=RAM+2",
-    ],
+    images: [desktopMem, desktopMem1],
   },
   {
     id: 5,
     category: "Premium Laptops",
-    name: "High Definition Monitor Red/Black Expo SDS-855697",
+    name: "High Definition Monitor Red/Blue Expo SDS-855697",
     price: 1490,
     badge: "SOLD",
-    images: [
-      "https://placehold.co/300x300/1a1a1a/666666?text=Monitor+1",
-      "https://placehold.co/300x300/1a1a1a/666666?text=Monitor+2",
-    ],
+    images: [acerRedMonitor, acerBlueMonitor],
   },
 ];
 
@@ -83,6 +81,7 @@ const TopRatedProducts = () => {
   return (
     <section className="top-rated-products">
       <h2 className="top-rated-products-title">Top Rated Products</h2>
+
       <div className="top-rated-products-grid">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

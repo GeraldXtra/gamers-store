@@ -1,20 +1,21 @@
 .product-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background: none;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   overflow: hidden;
   width: 100%;
+  height: 480px;
   transition: border-color 0.4s ease;
-}
-
-.product-card:hover {
-  border-color: var(--color-accent-primary);
 }
 
 .product-card-image-zone {
   position: relative;
+  flex-shrink: 0;
   height: 270px;
   display: flex;
   align-items: center;
@@ -85,10 +86,20 @@
   object-fit: contain;
   transform: translateY(12px);
   transition: transform 0.5s ease;
+  animation: product-card-image-fade 0.4s ease;
 }
 
 .product-card:hover .product-card-image {
-  transform: translateY(-16px);
+  transform: translateY(-20px);
+}
+
+@keyframes product-card-image-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .product-card-nav {
@@ -132,33 +143,29 @@
 }
 
 .product-card-add-to-cart {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  width: 100%;
+  height: 56px;
   background: var(--color-accent-primary);
   color: var(--color-text-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: 700;
+  letter-spacing: 0.5px;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   cursor: pointer;
-
-  max-height: 0;
-  height: 0;
-  padding: 0;
-  margin-top: 0;
+  transform: translateY(150%);
   opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, height 0.5s ease, opacity 0.4s ease,
-    margin-top 0.5s ease, padding 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.4s ease;
 }
 
 .product-card:hover .product-card-add-to-cart {
-  max-height: 100px;
-  height: var(--button-height-md);
-  padding: 0 var(--space-md);
+  transform: translateY(0);
   opacity: 1;
-  margin-top: var(--space-md);
 }
