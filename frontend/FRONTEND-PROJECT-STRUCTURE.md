@@ -115,9 +115,12 @@ frontend/src/
 │   ├── common/                      SHARED — reused across every branch
 │   │   ├── Button/                  Gerald
 │   │   ├── ProductCard/             Gerald builds for Home — David & Ibrahim reuse it
-│   │   └── Banner/                  Gerald builds — used across Home's promo sections
+│   │   ├── Banner/                  Gerald builds — used across Home's promo sections
+|   |   └── PromoCard/               Gerald  
 │   ├── layout/                      Gerald — renders once in App.jsx, wraps every page
 │   │   ├── AnnouncementBar/
+|   |   ├── FloatingAction/
+|   |   ├── GamersStorePopUp/
 │   │   ├── Header/
 │   │   └── Footer/
 │   └── sections/                    Gerald — Home page only
