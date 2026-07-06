@@ -158,7 +158,7 @@ frontend/src/
 │   └── formatPrice.js
 ├── styles/
 │   ├── variables.css                Gerald
-│   └── global.css                   Gerald
+│   └── index.css                   Gerald
 ├── App.jsx                          Gerald
 └── main.jsx
 ```
