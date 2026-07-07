@@ -1,0 +1,39 @@
+.ab-main {
+  width: 100%;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ab-sub-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.ab-sub-main p {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.ab-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.ab-message,
+.ab-locator,
+.ab-shipping,
+.ab-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,61 @@
+.gs-header {
+  width: 100%;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px;
+}
+
+.gs-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.gs-header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.gs-header-nav h2 {
+  cursor: pointer;
+}
+
+.gs-header-nav span {
+  color: var(--color-accent-cart);
+  font-size: 25px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+nav a:first-child {
+  border-bottom: 2px solid var(--color-accent-cart);
+  padding-bottom: 5px;
+}
+
+.gs-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.gs-icons i {
+  font-size: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
