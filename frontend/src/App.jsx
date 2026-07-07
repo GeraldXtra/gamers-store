@@ -1,7 +1,7 @@
-import Checkout from "./pages/Checkout/Checkout";
+import Wishlist from "./pages/Wishlist/Wishlist";
 
 function App() {
-  return <Checkout />;
+  return <Wishlist />;
 }
 
 export default App;

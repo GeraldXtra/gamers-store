@@ -1,11 +1,28 @@
 import { useState } from "react";
 import styles from "./Wishlist.module.css";
 
-// Temporary sample data — replace with real data from wishlistService later
 const sampleWishlist = [
-  { id: 1, name: "Wireless Gaming Mouse", price: 45.99, inStock: true, image: "" },
-  { id: 2, name: "Mechanical Keyboard", price: 89.99, inStock: true, image: "" },
-  { id: 3, name: "Gaming Headset", price: 65.0, inStock: false, image: "" },
+  {
+    id: 1,
+    name: "Wireless Gaming Mouse XF-550",
+    category: "Accessories",
+    price: 45.99,
+    inStock: true,
+  },
+  {
+    id: 2,
+    name: "RGB Mechanical Keyboard Pro",
+    category: "Accessories",
+    price: 89.99,
+    inStock: true,
+  },
+  {
+    id: 3,
+    name: "Over-Ear Gaming Headset FX-990",
+    category: "Audio",
+    price: 65.0,
+    inStock: false,
+  },
 ];
 
 function Wishlist() {
@@ -18,56 +35,45 @@ function Wishlist() {
   return (
     <div className={styles.container}>
       <p className={styles.breadcrumb}>Home / Wishlist</p>
-      <h1 className={styles.title}>Wishlist</h1>
+      <h1 className={styles.title}>My Wishlist</h1>
 
       {items.length === 0 ? (
         <p className={styles.empty}>No items added to the wishlist</p>
       ) : (
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Stock Status</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className={styles.imagePlaceholder}></div>
-                  </td>
-                  <td className={styles.name}>{item.name}</td>
-                  <td className={styles.price}>${item.price.toFixed(2)}</td>
-                  <td>
-                    <span
-                      className={item.inStock ? styles.inStock : styles.outOfStock}
-                    >
-                      {item.inStock ? "In Stock" : "Out of Stock"}
-                    </span>
-                  </td>
-                  <td>
-                    <button className={styles.addToCart} disabled={!item.inStock}>
-                      Add to Cart
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className={styles.remove}
-                      onClick={() => handleRemove(item.id)}
-                      aria-label="Remove item"
-                    >
-                      ×
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className={styles.grid}>
+          {items.map((item) => (
+            <div key={item.id} className={styles.card}>
+              <div className={styles.cardInner}>
+                <div className={styles.imageWrapper}>
+                  <div className={styles.imagePlaceholder}></div>
+                  <button
+                    className={styles.removeIcon}
+                    onClick={() => handleRemove(item.id)}
+                    aria-label="Remove from wishlist"
+                    title="Remove"
+                  >
+                    ×
+                  </button>
+                  {!item.inStock && (
+                    <span className={styles.soldBadge}>Sold Out</span>
+                  )}
+                </div>
+
+                <div className={styles.cardContent}>
+                  <p className={styles.category}>{item.category}</p>
+                  <h3 className={styles.name}>{item.name}</h3>
+                  <p className={styles.price}>${item.price.toFixed(2)}</p>
+                </div>
+              </div>
+
+              {/* Hidden below the card until hover — then slides up to fill the space that opens below */}
+              <div className={styles.addToCartWrapper}>
+                <button className={styles.addToCart} disabled={!item.inStock}>
+                  {item.inStock ? "Add to Cart" : "Out of Stock"}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

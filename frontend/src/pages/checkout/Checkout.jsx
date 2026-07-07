@@ -3,8 +3,8 @@ import styles from "./Checkout.module.css";
 
 // Temporary sample data — replace with real cart data from CartContext later
 const sampleCart = [
-  { id: 1, name: "Wireless Gaming Mouse", price: 45.99, quantity: 1 },
-  { id: 2, name: "Mechanical Keyboard", price: 89.99, quantity: 2 },
+  { id: 1, name: "Wireless Gaming Mouse XF-550", price: 45.99, quantity: 1 },
+  { id: 2, name: "RGB Mechanical Keyboard Pro", price: 89.99, quantity: 2 },
 ];
 
 function Checkout() {
@@ -61,58 +61,62 @@ function Checkout() {
         <form className={styles.layout} onSubmit={handleSubmit}>
           {/* Left: Cart review + shipping form */}
           <div className={styles.mainColumn}>
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Your Cart</h2>
-              <div className={styles.tableWrapper}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                      <th>Subtotal</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.name}</td>
-                        <td>${item.price.toFixed(2)}</td>
-                        <td>
-                          <input
-                            type="number"
-                            min="1"
-                            value={item.quantity}
-                            onChange={(e) =>
-                              handleQuantityChange(
-                                item.id,
-                                parseInt(e.target.value, 10)
-                              )
-                            }
-                            className={styles.quantityInput}
-                          />
-                        </td>
-                        <td>${(item.price * item.quantity).toFixed(2)}</td>
-                        <td>
-                          <button
-                            type="button"
-                            className={styles.remove}
-                            onClick={() => handleRemove(item.id)}
-                            aria-label="Remove item"
-                          >
-                            ×
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <section className={styles.card}>
+              <h2 className={styles.cardTitle}>Your Cart</h2>
+
+              <div className={styles.cartList}>
+                {cartItems.map((item) => (
+                  <div key={item.id} className={styles.cartItem}>
+                    <div className={styles.itemImagePlaceholder}></div>
+
+                    <div className={styles.itemInfo}>
+                      <p className={styles.itemName}>{item.name}</p>
+                      <p className={styles.itemPrice}>
+                        ${item.price.toFixed(2)}
+                      </p>
+                    </div>
+
+                    <div className={styles.itemQuantity}>
+                      <button
+                        type="button"
+                        className={styles.qtyButton}
+                        onClick={() =>
+                          handleQuantityChange(item.id, item.quantity - 1)
+                        }
+                      >
+                        −
+                      </button>
+                      <span className={styles.qtyValue}>{item.quantity}</span>
+                      <button
+                        type="button"
+                        className={styles.qtyButton}
+                        onClick={() =>
+                          handleQuantityChange(item.id, item.quantity + 1)
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <p className={styles.itemSubtotal}>
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
+
+                    <button
+                      type="button"
+                      className={styles.removeItem}
+                      onClick={() => handleRemove(item.id)}
+                      aria-label="Remove item"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
               </div>
             </section>
 
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Shipping Details</h2>
+            <section className={styles.card}>
+              <h2 className={styles.cardTitle}>Shipping Details</h2>
               <div className={styles.formRow}>
                 <input
                   type="text"
@@ -195,8 +199,8 @@ function Checkout() {
           </div>
 
           {/* Right: Order summary */}
-          <aside className={styles.summary}>
-            <h2 className={styles.sectionTitle}>Order Summary</h2>
+          <aside className={styles.summaryCard}>
+            <h2 className={styles.cardTitle}>Order Summary</h2>
             <div className={styles.summaryRow}>
               <span>Subtotal</span>
               <span>${subtotal.toFixed(2)}</span>
