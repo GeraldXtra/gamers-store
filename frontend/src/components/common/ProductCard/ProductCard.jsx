@@ -91,7 +91,14 @@ const ProductCard = ({ product }) => {
 
       <div className="product-card-info">
         <h3 className="product-card-name">{product.name}</h3>
-        <p className="product-card-price">{formatPrice(product.price)}</p>
+        <p className="product-card-price">
+          {formatPrice(product.price)}
+          {product.originalPrice && (
+            <span className="product-card-price-original">
+              {formatPrice(product.originalPrice)}
+            </span>
+          )}
+        </p>
 
         <button className="product-card-add-to-cart" onClick={handleAddToCart}>
           ADD TO CART <i className="bi bi-cart"></i>
