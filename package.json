@@ -1,0 +1,26 @@
+{
+  "name": "gamers-store",
+  "version": "1.0.0",
+  "description": "Full-stack gaming gadgets e-commerce platform for gamers. React + Vite frontend, Node.js + Express + MySQL backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeraldXtra/gamers-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GeraldXtra/gamers-store/issues"
+  },
+  "homepage": "https://github.com/GeraldXtra/gamers-store#readme",
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1"
+  }
+}
