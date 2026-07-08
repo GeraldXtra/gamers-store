@@ -1,15 +1,19 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Shop from "./pages/Shop/Shop";
-import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import Header from "./components/layout/Header/Header"
+import Footer from "./components/layout/Footer/Footer"
+import AnnouncementBar from "./components/layout/AnnouncementBar/AnnouncementBar"
+import Shop from "./pages/Shop/Shop"
+// import ProductCard from "./pages/ProductCard/ProductCard"
 
-export default function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    <>
+      <AnnouncementBar />
+      <Header />
+      <Shop/>
+      {/* <ProductCard/> */}
+      <Footer />
+    </>
+  )
 }
+
+export default App

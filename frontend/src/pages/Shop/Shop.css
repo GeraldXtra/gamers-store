@@ -462,3 +462,32 @@
     font-size: var(--font-size-sm);
   }
 }
+/* CARD BODY */
+.card-body {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+.card-sku {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--shop-text-secondary);
+  margin-bottom: 2px;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin: 0 0 var(--space-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--shop-text-primary);
+}
+
+.card-sku {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--shop-text-secondary);
+  margin-bottom: 2px;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/formatPrice";
 import "./Shop.css";
 
 // ---------------------------------------------------------------------------
@@ -24,6 +25,25 @@ export const CATEGORIES = [
   "RGB Accessories",
   "Mobile Gaming Accessories",
 ];
+
+// Short prefix per category, used to build SKUs like "GM-MOU-001"
+const CATEGORY_SKU_PREFIX = {
+  "Gaming Mice": "MOU",
+  "Mechanical Keyboards": "KEY",
+  "Gaming Headsets": "HDS",
+  "Controllers": "CTR",
+  "Gaming Monitors": "MON",
+  "Gaming Chairs": "CHR",
+  "Gaming Desks": "DSK",
+  "Microphones": "MIC",
+  "Webcams": "CAM",
+  "VR Equipment": "VRE",
+  "PC Components": "PCC",
+  "Streaming Equipment": "STR",
+  "Console Accessories": "CON",
+  "RGB Accessories": "RGB",
+  "Mobile Gaming Accessories": "MOB",
+};
 
 const ADJECTIVES = [
   "Vortex", "Nova", "Apex", "Phantom", "Titan", "Nebula", "Blaze", "Cyclone",
@@ -89,9 +109,12 @@ function generateMockProducts(count = 100) {
     const adjective = ADJECTIVES[Math.floor(rand() * ADJECTIVES.length)];
     const suffix = SUFFIXES[Math.floor(rand() * SUFFIXES.length)];
     const basePrice = 15 + rand() * 285;
+    const prefix = CATEGORY_SKU_PREFIX[category] || "GEN";
+    const paddedId = String(i).padStart(3, "0");
 
     products.push({
       id: i,
+      sku: `GM-${prefix}-${paddedId}`,
       name: `${adjective} ${category.replace(/s$/, "")} ${suffix}`,
       category,
       price: Number(basePrice.toFixed(2)),
@@ -114,8 +137,12 @@ function generateMockProducts(count = 100) {
   return products;
 }
 
+// Exported so ProductDetail.jsx can reuse the same mock catalog as a fallback
 export const MOCK_PRODUCTS = generateMockProducts(100);
 
+// ---------------------------------------------------------------------------
+// STAR RATING
+// ---------------------------------------------------------------------------
 function StarRating({ rating }) {
   const fullStars = Math.floor(rating);
   const hasHalf = rating - fullStars >= 0.5;
@@ -140,6 +167,9 @@ function StarRating({ rating }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// PRODUCT CARD
+// ---------------------------------------------------------------------------
 function ProductCard({ product, onView, isWishlisted, onToggleWishlist, isCompared, onToggleCompare, onAddToCart }) {
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -187,14 +217,18 @@ function ProductCard({ product, onView, isWishlisted, onToggleWishlist, isCompar
       </div>
 
       <div className="card-body">
+        <span className="card-sku">{product.sku}</span>
         <h3 className="card-title">{product.name}</h3>
         <StarRating rating={product.rating} />
-        <span className="card-price">${product.price.toFixed(2)}</span>
+        <span className="card-price">{formatPrice(product.price)}</span>
       </div>
     </div>
   );
 }
 
+// ---------------------------------------------------------------------------
+// SIDEBAR
+// ---------------------------------------------------------------------------
 function Sidebar({ categoryCounts, selectedCategories, onToggleCategory, onClearCategories }) {
   return (
     <aside className="shop-sidebar">
@@ -228,8 +262,11 @@ function Sidebar({ categoryCounts, selectedCategories, onToggleCategory, onClear
   );
 }
 
+// ---------------------------------------------------------------------------
+// MAIN SHOP COMPONENT
+// ---------------------------------------------------------------------------
 export default function Shop() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
