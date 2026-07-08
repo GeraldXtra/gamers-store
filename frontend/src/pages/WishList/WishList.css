@@ -1,0 +1,25 @@
+/* pages/Wishlist/Wishlist.css */
+.wishlist-page {
+  width: 92%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.wishlist-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xl) 0;
+}
+
+.wishlist-empty {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
