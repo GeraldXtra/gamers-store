@@ -1,8 +1,9 @@
+// components/common/ProductCard/ProductCard.jsx
 import { useState } from "react";
 import { formatPrice } from "../../../utils/formatPrice";
 import "./ProductCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onRemoveFromWishlist }) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -24,8 +25,12 @@ const ProductCard = ({ product }) => {
 
   const toggleWishlist = (e) => {
     e.stopPropagation();
-    setIsWishlisted((prev) => !prev);
-    // TODO: wire to wishlistService once AuthContext/CartContext exist
+    if (onRemoveFromWishlist) {
+      onRemoveFromWishlist(product.id);
+    } else {
+      setIsWishlisted((prev) => !prev);
+      // TODO: wire to wishlistService once AuthContext/CartContext exist
+    }
   };
 
   const handleAddToCart = (e) => {
@@ -33,6 +38,8 @@ const ProductCard = ({ product }) => {
     // TODO: wire to CartContext once it's built
     console.log("Add to cart:", product.name);
   };
+
+  const heartActive = onRemoveFromWishlist ? true : isWishlisted;
 
   return (
     <div className="product-card">
@@ -42,10 +49,12 @@ const ProductCard = ({ product }) => {
         <div className="product-card-icons">
           <button
             className={`product-card-icon-btn ${
-              isWishlisted ? "product-card-icon-active" : ""
+              heartActive ? "product-card-icon-active" : ""
             }`}
             onClick={toggleWishlist}
-            aria-label="Add to wishlist"
+            aria-label={
+              onRemoveFromWishlist ? "Remove from wishlist" : "Add to wishlist"
+            }
           >
             <i className="bi bi-heart"></i>
           </button>
