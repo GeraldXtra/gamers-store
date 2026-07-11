@@ -4,16 +4,20 @@ import FeaturedProducts from "../../components/sections/FeaturedProducts/Feature
 import TrendingProducts from "../../components/sections/TrendingProducts/TrendingProducts";
 import BrandLogos from "../../components/sections/BrandLogos/BrandLogos";
 import PromoBanners from "../../components/sections/PromoBanners/PromoBanners";
+import RecentlyAdded from "../../components/sections/RecentlyAdded/RecentlyAdded";
+import GamersStorePopup from "../../components/Layout/GamersStorePopUp/GamersStorePopUp";
 
 const Home = () => {
   return (
     <>
+      <GamersStorePopup />
       <Hero />
       <TopRatedProducts />
       <FeaturedProducts />
       <TrendingProducts />
       <BrandLogos />
       <PromoBanners />
+      <RecentlyAdded />
     </>
   );
 };

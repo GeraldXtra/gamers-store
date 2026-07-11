@@ -29,3 +29,27 @@
   width: 100%;
   margin: var(--space-3xl, 4rem) auto 0;
 }
+
+@media (max-width: 1024px) {
+  .top-rated-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-rated-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top-rated-products-promos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-rated-products-grid {
+    grid-template-columns: 1fr;
+  }
+  .top-rated-products-title {
+    font-size: var(--font-size-lg);
+  }
+}

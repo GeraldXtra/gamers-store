@@ -89,7 +89,7 @@ const Hero = () => {
   const slide = slides[activeSlide];
 
   return (
-    <section className="hero">
+    <section className="hero" id="hero-section">
       <button className="hero-arrow hero-arrow-left" onClick={prevSlide} aria-label="Previous slide">
         <i className="bi bi-chevron-left"></i>
       </button>

@@ -101,7 +101,7 @@
 }
 
 .promo-card-compact {
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 0.5 / 1;
   width: 100%;
   max-width: 340px;
   margin: 0 auto;
@@ -127,4 +127,30 @@
   max-height: 100%;
   width: auto;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .promo-card {
+    flex-direction: column;
+    min-height: auto;
+    padding: var(--space-lg);
+    text-align: center;
+  }
+  .promo-card-content {
+    max-width: 100%;
+    align-items: center;
+  }
+  .promo-card-image-zone {
+    width: 100%;
+    margin-top: var(--space-lg);
+  }
+  .promo-card-image {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-card-compact {
+    max-width: 100%;
+  }
 }

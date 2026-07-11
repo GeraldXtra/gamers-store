@@ -127,3 +127,37 @@
     opacity: 0.15;
   }
 }
+
+@media (max-width: 1024px) {
+  .trending-products-slide {
+    flex: 0 0 calc((100% - (2 * var(--space-md))) / 3);
+  }
+}
+
+@media (max-width: 768px) {
+  .trending-products-slide {
+    flex: 0 0 calc((100% - var(--space-md)) / 2);
+  }
+  .trending-products-header {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  .trending-products-filters {
+    width: 100%;
+    justify-content: center;
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .trending-products-slide {
+    flex: 0 0 100%;
+  }
+  .trending-products-title {
+    font-size: var(--font-size-lg);
+  }
+  .trending-filter-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
