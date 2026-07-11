@@ -1,4 +1,4 @@
-# gamers-store — Frontend
+# Gamers-store — Frontend
 
 A full-stack gaming gadgets e-commerce platform. This is the frontend: **React + Vite + Pure CSS (CSS Modules)**. The backend (Node.js + Express + MySQL) is a separate phase, covered in `backend/README.md` once we get there.
 
