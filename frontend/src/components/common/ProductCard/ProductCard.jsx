@@ -110,12 +110,10 @@ const ProductCard = ({ product, onRemoveFromWishlist, variant }) => {
         <div className="product-card-icons">
           <button
             className={`product-card-icon-btn ${
-              heartActive ? "product-card-icon-active" : ""
+              isWishlisted ? "product-card-icon-active" : ""
             }`}
             onClick={toggleWishlist}
-            aria-label={
-              onRemoveFromWishlist ? "Remove from wishlist" : "Add to wishlist"
-            }
+            aria-label="Add to wishlist"
           >
             <i className="bi bi-heart"></i>
           </button>

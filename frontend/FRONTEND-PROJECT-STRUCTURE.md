@@ -1,4 +1,4 @@
-# gamers-store — Frontend
+# Gamers-store — Frontend
 
 A full-stack gaming gadgets e-commerce platform. This is the frontend: **React + Vite + Pure CSS (CSS Modules)**. The backend (Node.js + Express + MySQL) is a separate phase, covered in `backend/README.md` once we get there.
 
@@ -115,9 +115,12 @@ frontend/src/
 │   ├── common/                      SHARED — reused across every branch
 │   │   ├── Button/                  Gerald
 │   │   ├── ProductCard/             Gerald builds for Home — David & Ibrahim reuse it
-│   │   └── Banner/                  Gerald builds — used across Home's promo sections
+│   │   ├── Banner/                  Gerald builds — used across Home's promo sections
+|   |   └── PromoCard/               Gerald  
 │   ├── layout/                      Gerald — renders once in App.jsx, wraps every page
 │   │   ├── AnnouncementBar/
+|   |   ├── FloatingAction/
+|   |   ├── GamersStorePopUp/
 │   │   ├── Header/
 │   │   └── Footer/
 │   └── sections/                    Gerald — Home page only
@@ -158,7 +161,7 @@ frontend/src/
 │   └── formatPrice.js
 ├── styles/
 │   ├── variables.css                Gerald
-│   └── global.css                   Gerald
+│   └── index.css                   Gerald
 ├── App.jsx                          Gerald
 └── main.jsx
 ```

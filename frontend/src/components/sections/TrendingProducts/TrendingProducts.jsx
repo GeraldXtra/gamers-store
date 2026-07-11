@@ -71,7 +71,7 @@ const allProducts = [
 ];
 
 const VISIBLE_CARDS = 5;
-const LOADING_DELAY = 600;
+const LOADING_DELAY = 600; // ⚠ simulated delay — swap for a real productService call once the backend exists
 
 const filters = [
   { key: "all", label: "Show All" },
