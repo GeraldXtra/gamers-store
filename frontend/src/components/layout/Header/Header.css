@@ -1,7 +1,7 @@
 .gs-topbar {
   width: 100%;
   background-color: #ffffff;
-  padding: 14px 0;
+  padding: 20px 0;
 }
 
 .gs-topbar-inner {
@@ -21,6 +21,15 @@
   flex-shrink: 0;
 }
 
+.gs-mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #111111;
+  cursor: pointer;
+}
+
 .gs-logo {
   font-size: 22px;
   font-weight: 700;
@@ -31,14 +40,6 @@
 
 .gs-logo span {
   color: var(--color-accent-cart);
-}
-
-.gs-menu-toggle {
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: #111111;
-  cursor: pointer;
 }
 
 .gs-search-bar {
@@ -261,6 +262,10 @@
   color: var(--color-accent-cart);
 }
 
+.gs-mobile-nav-panel {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .gs-search-bar {
     max-width: 380px;
@@ -283,38 +288,95 @@
     max-width: 100%;
     flex-basis: 100%;
   }
-  .gs-navbar-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) 0;
+
+  .gs-mobile-menu-toggle {
+    display: flex;
+    align-items: center;
   }
-  .gs-main-nav {
-    flex-wrap: wrap;
-    justify-content: center;
+
+  /* Desktop blue bar hidden — mobile panel replaces it entirely, not a wrapped version of it */
+  .gs-navbar {
+    display: none;
   }
-  .gs-weekly-discount {
+
+  .gs-mobile-nav-panel {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    justify-content: center;
-    padding-bottom: var(--space-sm);
+    max-height: 0;
+    overflow: hidden;
+    background-color: var(--color-accent-primary);
+    transition: max-height 0.4s ease;
   }
-  .gs-dropdown-menu {
-    left: 0;
-    transform: translateY(-10px);
+
+  .gs-mobile-nav-open {
+    max-height: 600px;
   }
-  .gs-dropdown-wrap:hover .gs-dropdown-menu {
-    transform: translateY(0);
+
+  .gs-mobile-nav-link {
+    display: block;
+    padding: 14px var(--space-lg);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .gs-mobile-pages-wrap {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .gs-mobile-pages-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 14px var(--space-lg);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .gs-mobile-pages-chevron {
+    transition: transform 0.3s ease;
+  }
+
+  .gs-mobile-pages-chevron-open {
+    transform: rotate(180deg);
+  }
+
+  .gs-mobile-pages-list {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: max-height 0.35s ease;
+  }
+
+  .gs-mobile-pages-list-open {
+    max-height: 400px;
+  }
+
+  .gs-mobile-pages-list a {
+    padding: 12px var(--space-xl);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+  }
+
+  .gs-mobile-pages-list a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 }
 
 @media (max-width: 480px) {
   .gs-logo {
     font-size: 18px;
-  }
-  .gs-main-nav a,
-  .gs-page-trigger {
-    font-size: 12px;
-    padding: 8px 10px;
   }
   .gs-cart-total {
     display: none;

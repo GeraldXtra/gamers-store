@@ -70,7 +70,7 @@ const allProducts = [
   },
 ];
 
-const VISIBLE_CARDS = 5;
+const VISIBLE_CARDS = 5; // fallback only, used before layout has been measured
 const LOADING_DELAY = 600; // ⚠ simulated delay — swap for a real productService call once the backend exists
 
 const filters = [
@@ -84,7 +84,9 @@ const TrendingProducts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardStep, setCardStep] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_CARDS);
   const trackRef = useRef(null);
+  const viewportRef = useRef(null);
   const timeoutRef = useRef(null);
 
   const products =
@@ -92,7 +94,7 @@ const TrendingProducts = () => {
       ? allProducts
       : allProducts.filter((p) => p.filterKey === activeFilter);
 
-  const maxIndex = Math.max(0, products.length - VISIBLE_CARDS);
+  const maxIndex = Math.max(0, products.length - visibleCount);
 
   const handleFilterClick = (key) => {
     if (key === activeFilter) return;
@@ -111,17 +113,32 @@ const TrendingProducts = () => {
 
   useEffect(() => {
     const measure = () => {
-      if (trackRef.current && trackRef.current.children.length > 0) {
+      if (
+        trackRef.current &&
+        trackRef.current.children.length > 0 &&
+        viewportRef.current
+      ) {
         const firstCard = trackRef.current.children[0];
         const style = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(style.gap) || 0;
-        setCardStep(firstCard.offsetWidth + gap);
+        const step = firstCard.offsetWidth + gap;
+        setCardStep(step);
+
+        const viewportWidth = viewportRef.current.offsetWidth;
+        const count = Math.max(1, Math.round((viewportWidth + gap) / step));
+        setVisibleCount(count);
       }
     };
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, [products, isLoading]);
+
+  // Keep the current slide in range whenever the number of visible
+  // cards changes (rotating a device, resizing the browser, etc.)
+  useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
 
   const goNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   const goPrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
@@ -181,7 +198,7 @@ const TrendingProducts = () => {
             </div>
           </div>
         ) : (
-          <div className="trending-products-viewport">
+          <div className="trending-products-viewport" ref={viewportRef}>
             <div
               ref={trackRef}
               className="trending-products-track"

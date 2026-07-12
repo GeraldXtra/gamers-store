@@ -1,6 +1,12 @@
 .trending-products-main {
+  --color-bg-primary: #ffffff;
+  --color-text-primary: #121212;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+
   width: 100%;
-  background: var(--color-bg-secondary);
+  background: transparent;
+  margin: 0 auto;
 }
 
 .trending-products {
@@ -51,7 +57,7 @@
 .trending-filter-active,
 .trending-filter-active:hover {
   background: var(--color-accent-primary);
-  color: var(--color-text-primary);
+  color: #ffffff;
 }
 
 .trending-products-arrows {
@@ -147,17 +153,54 @@
     justify-content: center;
     order: 3;
   }
+  .trending-arrow {
+    padding: 6px;
+  }
 }
 
 @media (max-width: 480px) {
+  .trending-products {
+    padding: var(--space-xl) var(--space-md);
+  }
+  .trending-products-header {
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
   .trending-products-slide {
     flex: 0 0 100%;
   }
   .trending-products-title {
     font-size: var(--font-size-lg);
   }
+  .trending-products-filters {
+    justify-content: flex-start;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .trending-products-filters::-webkit-scrollbar {
+    display: none;
+  }
   .trending-filter-btn {
     font-size: 12px;
     padding: 6px 12px;
+    flex-shrink: 0;
+  }
+  .trending-spinner-wrap {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 360px) {
+  .trending-products {
+    padding: var(--space-lg) var(--space-sm);
+  }
+  .trending-products-title {
+    font-size: 16px;
+  }
+  .trending-filter-btn {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 }

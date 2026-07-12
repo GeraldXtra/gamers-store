@@ -22,12 +22,17 @@ const categoryOptions = [
 ];
 
 const navLinkClass = ({ isActive }) => (isActive ? "gs-main-nav-active" : "");
+const mobileNavLinkClass = ({ isActive }) =>
+  `gs-mobile-nav-link ${isActive ? "gs-main-nav-active" : ""}`;
 
 const Header = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
   const categoryRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -39,13 +44,25 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleClickOutsideMobile = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        setIsMobileMenuOpen(false);
+        setIsMobilePagesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutsideMobile);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutsideMobile);
+  }, [isMobileMenuOpen]);
+
   const handleSelectCategory = (cat) => {
     setSelectedCategory(cat);
     setIsCategoryOpen(false);
   };
 
   const handleSearchSubmit = () => {
-    // TODO: navigate to /shop?search=...&category=... once Shop supports query filtering
     console.log("Search:", searchValue, "in", selectedCategory);
   };
 
@@ -53,12 +70,28 @@ const Header = () => {
     if (e.key === "Enter") handleSearchSubmit();
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsMobilePagesOpen(false);
+  };
+
   return (
-    <header className="gs-header-wrapper">
+    <header className="gs-header-wrapper" ref={headerRef}>
       {/* Row 1 — light utility bar */}
       <div className="gs-topbar">
         <div className="gs-topbar-inner">
           <div className="gs-topbar-left">
+            <button
+              className="gs-mobile-menu-toggle"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <i
+                className={`bi ${isMobileMenuOpen ? "bi-x-lg" : "bi-list"}`}
+              ></i>
+            </button>
+
             <NavLink to="/" end className="gs-logo">
               Gamers Store<span>.</span>
             </NavLink>
@@ -127,7 +160,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Row 2 — blue nav bar */}
+      {/* Row 2 — blue nav bar, desktop only, completely unchanged */}
       <div className="gs-navbar">
         <div className="gs-navbar-inner">
           <nav className="gs-main-nav">
@@ -155,6 +188,56 @@ const Header = () => {
             Weekly Discount <i className="bi bi-chevron-right"></i>
           </NavLink>
         </div>
+      </div>
+
+      {/* Mobile nav panel — new, only renders/functions below 768px via CSS */}
+      <div
+        className={`gs-mobile-nav-panel ${
+          isMobileMenuOpen ? "gs-mobile-nav-open" : ""
+        }`}
+      >
+        <NavLink
+          to="/"
+          end
+          className={mobileNavLinkClass}
+          onClick={closeMobileMenu}
+        >
+          Home
+        </NavLink>
+
+        <div className="gs-mobile-pages-wrap">
+          <button
+            className="gs-mobile-pages-trigger"
+            onClick={() => setIsMobilePagesOpen((prev) => !prev)}
+          >
+            <span>Pages</span>
+            <i
+              className={`bi bi-chevron-down gs-mobile-pages-chevron ${
+                isMobilePagesOpen ? "gs-mobile-pages-chevron-open" : ""
+              }`}
+            ></i>
+          </button>
+
+          <div
+            className={`gs-mobile-pages-list ${
+              isMobilePagesOpen ? "gs-mobile-pages-list-open" : ""
+            }`}
+          >
+            {pagesDropdownLinks.map((link) => (
+              <NavLink key={link.to} to={link.to} onClick={closeMobileMenu}>
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+
+        <NavLink
+          to="/shop"
+          className={mobileNavLinkClass}
+          onClick={closeMobileMenu}
+        >
+          Shop
+        </NavLink>
       </div>
     </header>
   );

@@ -7,6 +7,7 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import FloatingActions from "./components/layout/FloatingActions/FloatingActions";
 import AnnouncementBar from "./components/layout/AnnouncementBar/AnnouncementBar";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/about" element={<PagePlaceholder title="About Us" />} />
+          <Route path="/about" element={<About title="About Us" />} />
           <Route path="/faq" element={<PagePlaceholder title="FAQ" />} />
           <Route
             path="/terms-conditions"
@@ -62,4 +63,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

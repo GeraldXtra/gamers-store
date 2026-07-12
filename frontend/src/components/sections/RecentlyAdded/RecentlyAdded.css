@@ -1,5 +1,11 @@
 .recently-added {
+  --color-bg-primary: #ffffff;
+  --color-text-primary: #121212;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+
   width: 92%;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-xl) calc(var(--space-2xl) * 2);
 }
@@ -14,27 +20,63 @@
 
 .recently-added-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-md);
 }
 
 @media (max-width: 1024px) {
   .recently-added-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+/* Below tablet width: drop the shrinking-grid pattern entirely.
+   Compact cards are wide and short, so instead of squeezing them
+   to 1-per-row, this switches to a horizontal swipeable strip with
+   scroll-snap — fixed card width, a peek of the next card as a cue
+   to keep scrolling. */
 @media (max-width: 768px) {
+  .recently-added {
+    padding: var(--space-xl) 0 calc(var(--space-xl) * 2);
+  }
+
+  .recently-added-title {
+    padding: 0 var(--space-md);
+  }
+
   .recently-added-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-md);
+    padding: 0 var(--space-md) var(--space-sm);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .recently-added-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recently-added-grid > * {
+    flex: 0 0 auto;
+    width: 78%;
+    max-width: 320px;
+    scroll-snap-align: start;
   }
 }
 
 @media (max-width: 480px) {
-  .recently-added-grid {
-    grid-template-columns: 1fr;
-  }
   .recently-added-title {
     font-size: var(--font-size-lg);
+  }
+  .recently-added-grid > * {
+    width: 85%;
+  }
+}
+
+@media (max-width: 360px) {
+  .recently-added-grid > * {
+    width: 90%;
   }
 }
