@@ -13,6 +13,16 @@
   transition: border-color 0.4s ease;
 }
 
+.product-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-card:visited {
+  color: inherit;
+}
+
 .product-card-image-zone {
   position: relative;
   flex-shrink: 0;

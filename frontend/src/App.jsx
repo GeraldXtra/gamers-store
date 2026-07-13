@@ -1,16 +1,23 @@
+import { Routes, Route } from "react-router-dom"
 import Header from "./components/layout/Header/Header"
 import Footer from "./components/layout/Footer/Footer"
 import AnnouncementBar from "./components/layout/AnnouncementBar/AnnouncementBar"
 import Shop from "./pages/Shop/Shop"
-// import ProductCard from "./pages/ProductCard/ProductCard"
+import ProductDetails from "./pages/ProductDetail/ProductDetail"
 
 const App = () => {
   return (
     <>
       <AnnouncementBar />
       <Header />
-      <Shop/>
-      {/* <ProductCard/> */}
+      <Routes>
+        <Route
+          path="/"
+          element={<Shop limit={8} showFilters={false} title="Featured Products" />}
+        />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
       <Footer />
     </>
   )
