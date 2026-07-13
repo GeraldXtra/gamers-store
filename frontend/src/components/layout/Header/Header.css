@@ -176,6 +176,7 @@
   width: 92%;
   max-width: var(--container-max-width);
   margin: 0 auto;
+  padding-top: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -190,7 +191,7 @@
 .gs-page-trigger {
   display: flex;
   align-items: center;
-  padding: var(--space-md) var(--space-lg);
+  padding: calc(var(--space-md) + 4px) var(--space-lg) var(--space-md);
   color: var(--color-text-primary);
   text-decoration: none;
   font-size: var(--font-size-sm);
@@ -221,6 +222,45 @@
 
 .gs-weekly-discount:hover {
   gap: var(--space-sm);
+}
+
+.gs-weekly-discount-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.gs-weekly-discount-icon-chevron,
+.gs-weekly-discount-icon-plus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 13px;
+  line-height: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.gs-weekly-discount-icon-chevron {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+.gs-weekly-discount-icon-plus {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+.gs-weekly-discount:hover .gs-weekly-discount-icon-chevron {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+
+.gs-weekly-discount:hover .gs-weekly-discount-icon-plus {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
 }
 
 .gs-dropdown-wrap {

@@ -16,6 +16,7 @@
 }
 
 .trending-products-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,39 +62,60 @@
 }
 
 .trending-products-arrows {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
 
+/* Real button chrome — desktop/laptop only. Mobile strips this
+   back down to a bare icon further down in this file. */
 .trending-arrow {
-  background: none;
-  border: none;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--color-text-primary);
+  font-size: 16px;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .trending-arrow:hover:not(:disabled) {
-  color: var(--color-text-primary);
-  transform: scale(1.15);
+  background: #f3f4f6;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+/* Visible but not clickable once a product list end is reached —
+   the `disabled` attribute already blocks clicks/keyboard activation,
+   this just makes the "disabled" state read clearly instead of
+   fading almost out of sight. */
 .trending-arrow:disabled {
-  opacity: 0.25;
+  opacity: 0.45;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .trending-products-viewport {
   width: 100%;
   overflow: hidden;
+  touch-action: pan-y; /* claims horizontal swipe for the carousel, leaves vertical page scroll alone */
+  user-select: none;
 }
 
 .trending-products-track {
   display: flex;
   gap: var(--space-md);
-  transition: transform 0.5s ease;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .trending-products-slide {
@@ -148,13 +170,30 @@
     flex-wrap: wrap;
     gap: var(--space-md);
   }
+  .trending-products-title {
+    order: 1;
+  }
+  .trending-products-arrows {
+    order: 2;
+  }
   .trending-products-filters {
+    order: 3;
+    flex-basis: 100%;
     width: 100%;
     justify-content: center;
-    order: 3;
   }
+
+  /* Mobile: strip the button chrome down to a bare icon */
   .trending-arrow {
-    padding: 6px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .trending-arrow:hover:not(:disabled) {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.1);
   }
 }
 
@@ -167,7 +206,7 @@
     margin-bottom: var(--space-lg);
   }
   .trending-products-slide {
-    flex: 0 0 100%;
+    flex: 0 0 85%;
   }
   .trending-products-title {
     font-size: var(--font-size-lg);
@@ -190,6 +229,11 @@
   .trending-spinner-wrap {
     min-height: 240px;
   }
+  .trending-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -202,5 +246,8 @@
   .trending-filter-btn {
     font-size: 11px;
     padding: 5px 10px;
+  }
+  .trending-products-slide {
+    flex: 0 0 90%;
   }
 }

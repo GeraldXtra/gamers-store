@@ -5,7 +5,6 @@
   --color-border: #e5e7eb;
 
   width: 92%;
-  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-xl) calc(var(--space-2xl) * 2);
 }
@@ -18,24 +17,32 @@
   margin: 0 auto var(--space-xl);
 }
 
+.recently-added-viewport {
+  position: relative;
+  width: 100%;
+}
+
 .recently-added-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-md);
 }
 
-@media (max-width: 1024px) {
-  .recently-added-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.recently-added-slide {
+  min-width: 0;
 }
 
-/* Below tablet width: drop the shrinking-grid pattern entirely.
-   Compact cards are wide and short, so instead of squeezing them
-   to 1-per-row, this switches to a horizontal swipeable strip with
-   scroll-snap — fixed card width, a peek of the next card as a cue
-   to keep scrolling. */
-@media (max-width: 768px) {
+.recently-added-arrow {
+  display: none;
+}
+
+/* ======================================================
+   TABLET & MOBILE — JS-driven, single-card carousel.
+   Auto-advances every 2s, plus manual prev/next arrows.
+   Anything above 1024px (laptop, desktop, big screens)
+   never renders these arrows and keeps the static grid above.
+   ====================================================== */
+@media (max-width: 1024px) {
   .recently-added {
     padding: var(--space-xl) 0 calc(var(--space-xl) * 2);
   }
@@ -44,25 +51,55 @@
     padding: 0 var(--space-md);
   }
 
+  .recently-added-viewport {
+    overflow: hidden;
+    padding: 0 var(--space-md);
+  }
+
   .recently-added-grid {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
     gap: var(--space-md);
-    padding: 0 var(--space-md) var(--space-sm);
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
   }
 
-  .recently-added-grid::-webkit-scrollbar {
-    display: none;
+  .recently-added-slide {
+    flex: 0 0 100%;
   }
 
-  .recently-added-grid > * {
-    flex: 0 0 auto;
-    width: 78%;
-    max-width: 320px;
-    scroll-snap-align: start;
+  .recently-added-arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-primary);
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color 0.25s ease, transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .recently-added-arrow:hover {
+    background: #f3f4f6;
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  }
+
+  .recently-added-arrow-prev {
+    left: 2px;
+  }
+
+  .recently-added-arrow-next {
+    right: 2px;
   }
 }
 
@@ -70,13 +107,15 @@
   .recently-added-title {
     font-size: var(--font-size-lg);
   }
-  .recently-added-grid > * {
-    width: 85%;
+  .recently-added-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 360px) {
-  .recently-added-grid > * {
-    width: 90%;
+  .recently-added {
+    padding-top: var(--space-lg);
   }
 }

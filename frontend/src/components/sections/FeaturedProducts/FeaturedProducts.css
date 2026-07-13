@@ -6,7 +6,6 @@
   --color-border: #e5e7eb;
 
   width: 92%;
-  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-xl);
   background: transparent;

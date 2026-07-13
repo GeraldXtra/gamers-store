@@ -185,7 +185,11 @@ const Header = () => {
           </nav>
 
           <NavLink to="/shop" className="gs-weekly-discount">
-            Weekly Discount <i className="bi bi-chevron-right"></i>
+            Weekly Discount
+            <span className="gs-weekly-discount-icon">
+              <i className="bi bi-chevron-right gs-weekly-discount-icon-chevron"></i>
+              <i className="bi bi-plus-lg gs-weekly-discount-icon-plus"></i>
+            </span>
           </NavLink>
         </div>
       </div>

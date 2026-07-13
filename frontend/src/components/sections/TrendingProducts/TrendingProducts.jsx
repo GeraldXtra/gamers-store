@@ -85,9 +85,12 @@ const TrendingProducts = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardStep, setCardStep] = useState(0);
   const [visibleCount, setVisibleCount] = useState(VISIBLE_CARDS);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const trackRef = useRef(null);
   const viewportRef = useRef(null);
   const timeoutRef = useRef(null);
+  const dragStateRef = useRef({ startX: 0, currentX: 0, active: false });
 
   const products =
     activeFilter === "all"
@@ -142,6 +145,39 @@ const TrendingProducts = () => {
 
   const goNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   const goPrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
+
+  // ── Drag / swipe support (mouse + touch, via Pointer Events) ──
+  const handlePointerDown = (e) => {
+    if (isLoading || cardStep === 0) return;
+    dragStateRef.current = {
+      startX: e.clientX,
+      currentX: e.clientX,
+      active: true,
+    };
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!dragStateRef.current.active) return;
+    dragStateRef.current.currentX = e.clientX;
+    setDragOffset(dragStateRef.current.currentX - dragStateRef.current.startX);
+  };
+
+  const endDrag = () => {
+    if (!dragStateRef.current.active) return;
+    const delta = dragStateRef.current.currentX - dragStateRef.current.startX;
+    dragStateRef.current.active = false;
+    setIsDragging(false);
+    setDragOffset(0);
+
+    const threshold = Math.max(40, cardStep * 0.2);
+    if (delta <= -threshold) {
+      goNext();
+    } else if (delta >= threshold) {
+      goPrev();
+    }
+  };
 
   return (
     <section className="trending-products-main">
@@ -198,11 +234,25 @@ const TrendingProducts = () => {
             </div>
           </div>
         ) : (
-          <div className="trending-products-viewport" ref={viewportRef}>
+          <div
+            className="trending-products-viewport"
+            ref={viewportRef}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onDragStart={(e) => e.preventDefault()}
+            style={{ cursor: isDragging ? "grabbing" : "grab" }}
+          >
             <div
               ref={trackRef}
               className="trending-products-track"
-              style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
+              style={{
+                transform: `translateX(-${
+                  currentIndex * cardStep - dragOffset
+                }px)`,
+                transition: isDragging ? "none" : undefined,
+              }}
             >
               {products.map((product) => (
                 <div className="trending-products-slide" key={product.id}>

@@ -1,6 +1,5 @@
 .top-rated-products {
   width: 92%;
-  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-xl);
 }

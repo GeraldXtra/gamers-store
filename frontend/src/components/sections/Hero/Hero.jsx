@@ -4,6 +4,7 @@ import cpuImg from "./../../../assets/cpu.png";
 import gtximg from "./../../../assets/Gigabyte_GeForce_GTX_1080_Ti_11GB_AORUS_XTREME_Waterforce_WB.png";
 import mouseImg from "./../../../assets/mouse.png";
 import keyboardImg from "./../../../assets/keyboard.png";
+import Button from "./../../common/Button/Button";
 import "./Hero.css";
 
 const slides = [
@@ -76,13 +77,9 @@ const Hero = () => {
           <div key={activeSlide} className="hero-text">
             <h1 className="hero-title">{slide.title}</h1>
             <p className="hero-subtitle">{slide.subtitle}</p>
-            <a href={slide.ctaLink} className="hero-cta">
+            <Button variant="primary" size="md" to={slide.ctaLink} icon="bi-chevron-right" hoverIcon="bi-plus-lg">
               {slide.ctaText}
-              <span className="hero-cta-icon-wrap">
-                <i className="bi bi-chevron-right hero-cta-icon hero-cta-icon-default"></i>
-                <i className="bi bi-plus-lg hero-cta-icon hero-cta-icon-hover"></i>
-              </span>
-            </a>
+            </Button>
           </div>
 
           <div className="hero-dots">
