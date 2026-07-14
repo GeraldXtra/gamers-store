@@ -36,6 +36,7 @@
 
 .btn-icon-static {
   font-size: 14px;
+  color: inherit;
 }
 
 .btn-icon-wrap {
@@ -49,7 +50,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  color: white;
+  color: inherit;
   font-size: 16px;
   transition: opacity 0.45s ease, transform 0.45s ease;
 }

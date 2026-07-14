@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import WeeklyDiscountDropdown from "./WeeklyDiscountDropDown.jsx/WeeklyDiscountDropDown";
 import "./Header.css";
 
 const pagesDropdownLinks = [
@@ -25,14 +26,18 @@ const navLinkClass = ({ isActive }) => (isActive ? "gs-main-nav-active" : "");
 const mobileNavLinkClass = ({ isActive }) =>
   `gs-mobile-nav-link ${isActive ? "gs-main-nav-active" : ""}`;
 
+const WEEKLY_CLOSE_DELAY = 150;
+
 const Header = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
+  const [isWeeklyOpen, setIsWeeklyOpen] = useState(false);
   const categoryRef = useRef(null);
   const headerRef = useRef(null);
+  const weeklyCloseTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -57,6 +62,10 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutsideMobile);
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    return () => clearTimeout(weeklyCloseTimeoutRef.current);
+  }, []);
+
   const handleSelectCategory = (cat) => {
     setSelectedCategory(cat);
     setIsCategoryOpen(false);
@@ -73,6 +82,17 @@ const Header = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobilePagesOpen(false);
+  };
+
+  const openWeeklyDropdown = () => {
+    clearTimeout(weeklyCloseTimeoutRef.current);
+    setIsWeeklyOpen(true);
+  };
+
+  const closeWeeklyDropdown = () => {
+    weeklyCloseTimeoutRef.current = setTimeout(() => {
+      setIsWeeklyOpen(false);
+    }, WEEKLY_CLOSE_DELAY);
   };
 
   return (
@@ -160,7 +180,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Row 2 — blue nav bar, desktop only, completely unchanged */}
       <div className="gs-navbar">
         <div className="gs-navbar-inner">
           <nav className="gs-main-nav">
@@ -184,13 +203,26 @@ const Header = () => {
             </NavLink>
           </nav>
 
-          <NavLink to="/shop" className="gs-weekly-discount">
-            Weekly Discount
-            <span className="gs-weekly-discount-icon">
-              <i className="bi bi-chevron-right gs-weekly-discount-icon-chevron"></i>
-              <i className="bi bi-plus-lg gs-weekly-discount-icon-plus"></i>
-            </span>
-          </NavLink>
+          <div className="gs-weekly-discount-wrap">
+            <NavLink
+              to="/shop"
+              className="gs-weekly-discount"
+              onMouseEnter={openWeeklyDropdown}
+              onMouseLeave={closeWeeklyDropdown}
+            >
+              Weekly Discount
+              <span className="gs-weekly-discount-icon">
+                <i className="bi bi-chevron-right gs-weekly-discount-icon-chevron"></i>
+                <i className="bi bi-plus-lg gs-weekly-discount-icon-plus"></i>
+              </span>
+            </NavLink>
+
+            <WeeklyDiscountDropdown
+              isOpen={isWeeklyOpen}
+              onMouseEnter={openWeeklyDropdown}
+              onMouseLeave={closeWeeklyDropdown}
+            />
+          </div>
         </div>
       </div>
 
