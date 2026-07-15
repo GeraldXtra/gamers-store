@@ -86,7 +86,7 @@ export default function About() {
           <h1 className="au-title">More About Company History</h1>
           <div className="au-intro-text">
             <p>
-              Gamers Store is a web development project created by students of
+             <strong>Gamers Store</strong> is a web development project created by students of
               <strong> Aptech Computer Education, Ajao Estate, Lagos, Nigeria.</strong>
               The project was developed as part of our practical training to demonstrate
               our understanding of modern web technologies, responsive design, and
