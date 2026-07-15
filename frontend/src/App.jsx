@@ -9,6 +9,7 @@ import FloatingActions from "./components/layout/FloatingActions/FloatingActions
 import AnnouncementBar from "./components/layout/AnnouncementBar/AnnouncementBar";
 import About from "./pages/About/About";
 import TermsAndCondition from "./pages/TermsAndConditions/TermsAndConditions";
+import StoreLocator from "./pages/StoreLocator/StoreLocator";
 
 function App() {
   return (
@@ -31,10 +32,7 @@ function App() {
             path="/get-in-touch"
             element={<PagePlaceholder title="Get In Touch" />}
           />
-          <Route
-            path="/store-locator"
-            element={<PagePlaceholder title="Store Locator" />}
-          />
+          <Route path="/store-locator" element={<StoreLocator />} />
           <Route
             path="/pricing-plans"
             element={<PagePlaceholder title="Pricing Plans" />}

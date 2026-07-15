@@ -45,7 +45,7 @@ The full file (`styles/variables.css`) has a detailed comment above every single
 | **David**         | `feature/david-shop-product`                    | Shop, Single Product                                                                |
 | **Ibrahim**       | `feature/ibrahim-wishlist-checkout`             | Wishlist, Checkout (cart review + shipping + order summary, combined into one page) |
 | **John**          | `feature/john-static-pages`                     | About, FAQ, Contact Us, Get In Touch                                                |
-| **Kingsley**      | `feature/kingsley-static-pages`                 | Terms and Conditions, Store Locator, Pricing Plans                                  |
+| **Kingsley**      | `feature/kingsley-static-pages`                 | Terms and Conditions, Store Locator,                                                |
 
 **15 pages total.** Everyone builds inside their own `pages/` folder(s) and, where noted below, their own `services/` file. Nobody edits another member's page folder without asking first.
 
@@ -64,7 +64,6 @@ We're using **Gizmos**, a real electronics/gaming store theme, as our visual ref
 | Get In Touch                       | John     | https://gizmos.qodeinteractive.com/get-in-touch/                                                                                                                                                                                       |
 | Terms and Conditions               | Kingsley | https://gizmos.qodeinteractive.com/terms-conditions/                                                                                                                                                                                   |
 | Store Locator                      | Kingsley | https://gizmos.qodeinteractive.com/store-locator/                                                                                                                                                                                      |
-| Pricing Plans                      | Kingsley | https://gizmos.qodeinteractive.com/pricing-plans/                                                                                                                                                                                      |
 | Shop                               | David    | https://gizmos.qodeinteractive.com/shop/                                                                                                                                                                                               |
 | Single Product                     | David    | https://gizmos.qodeinteractive.com/product/fractal-design-s7-tempered-glass-computer-case/ _(one example — every product follows the same `/product/product-name/` layout)_                                                            |
 | Login / Sign Up / Account Settings | Oreoluwa | https://gizmos.qodeinteractive.com/my-account/ _(WooCommerce combines all three into this one page — login form and register form side by side, becomes the account dashboard once logged in)_                                         |
@@ -116,7 +115,7 @@ frontend/src/
 │   │   ├── Button/                  Gerald
 │   │   ├── ProductCard/             Gerald builds for Home — David & Ibrahim reuse it
 │   │   ├── Banner/                  Gerald builds — used across Home's promo sections
-|   |   └── PromoCard/               Gerald  
+|   |   └── PromoCard/               Gerald
 │   ├── layout/                      Gerald — renders once in App.jsx, wraps every page
 │   │   ├── AnnouncementBar/
 |   |   ├── FloatingAction/
@@ -139,7 +138,6 @@ frontend/src/
 │   ├── GetInTouch/                  John
 │   ├── TermsAndConditions/          Kingsley
 │   ├── StoreLocator/                Kingsley
-│   ├── PricingPlans/                Kingsley
 │   ├── Shop/                        David
 │   ├── ProductDetail/               David
 │   ├── Login/                       Oreoluwa
