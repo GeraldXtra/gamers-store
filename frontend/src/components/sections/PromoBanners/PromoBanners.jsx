@@ -3,26 +3,25 @@ import "./PromoBanners.css";
 
 const promos = [
   {
-    id: "promo-discount-2",
-    title: "Limited Weekly Discount",
+    id: "promo-joysticks",
+    title: "Game Joysticks",
     ctaText: "Shop Now",
     ctaLink: "/shop",
-    image: null,
+    image: "https://placehold.co/240x240/1a1a1a/666666?text=Joystick",
   },
   {
-    id: "promo-drones",
-    title: "Photo Drones",
-    subtitle: 'MF841HN/A 13"',
-    label: "Discount -30%",
-    price: "$75",
-    image: null,
-  },
-  {
-    id: "promo-pc-parts",
-    title: "PC Parts & Elements",
+    id: "promo-monitors-keyboards",
+    title: "Monitors & Keyboards",
     ctaText: "Shop Now",
     ctaLink: "/shop",
-    image: null,
+    image: "https://placehold.co/240x240/1a1a1a/666666?text=Monitor",
+  },
+  {
+    id: "promo-sport-watches",
+    title: "Sport Watches",
+    ctaText: "Shop Now",
+    ctaLink: "/shop",
+    image: "https://placehold.co/240x240/1a1a1a/666666?text=Watch",
   },
 ];
 

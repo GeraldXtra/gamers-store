@@ -58,3 +58,24 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+@media (max-width: 768px) {
+  .brand-logos-row {
+    gap: var(--space-lg);
+  }
+  .brand-logo-item {
+    padding: 0 var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logos-section {
+    padding: var(--space-xl) var(--space-md);
+  }
+  .brand-logo-item {
+    padding: 0 var(--space-sm);
+  }
+  .brand-logo-divider {
+    border-right: none;
+  }
+}

@@ -70,7 +70,7 @@ const allProducts = [
   },
 ];
 
-const VISIBLE_CARDS = 5;
+const VISIBLE_CARDS = 5; // fallback only, used before layout has been measured
 const LOADING_DELAY = 600; // ⚠ simulated delay — swap for a real productService call once the backend exists
 
 const filters = [
@@ -84,15 +84,20 @@ const TrendingProducts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardStep, setCardStep] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_CARDS);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const trackRef = useRef(null);
+  const viewportRef = useRef(null);
   const timeoutRef = useRef(null);
+  const dragStateRef = useRef({ startX: 0, currentX: 0, active: false });
 
   const products =
     activeFilter === "all"
       ? allProducts
       : allProducts.filter((p) => p.filterKey === activeFilter);
 
-  const maxIndex = Math.max(0, products.length - VISIBLE_CARDS);
+  const maxIndex = Math.max(0, products.length - visibleCount);
 
   const handleFilterClick = (key) => {
     if (key === activeFilter) return;
@@ -111,11 +116,20 @@ const TrendingProducts = () => {
 
   useEffect(() => {
     const measure = () => {
-      if (trackRef.current && trackRef.current.children.length > 0) {
+      if (
+        trackRef.current &&
+        trackRef.current.children.length > 0 &&
+        viewportRef.current
+      ) {
         const firstCard = trackRef.current.children[0];
         const style = window.getComputedStyle(trackRef.current);
         const gap = parseFloat(style.gap) || 0;
-        setCardStep(firstCard.offsetWidth + gap);
+        const step = firstCard.offsetWidth + gap;
+        setCardStep(step);
+
+        const viewportWidth = viewportRef.current.offsetWidth;
+        const count = Math.max(1, Math.round((viewportWidth + gap) / step));
+        setVisibleCount(count);
       }
     };
     measure();
@@ -123,8 +137,47 @@ const TrendingProducts = () => {
     return () => window.removeEventListener("resize", measure);
   }, [products, isLoading]);
 
+  // Keep the current slide in range whenever the number of visible
+  // cards changes (rotating a device, resizing the browser, etc.)
+  useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
+
   const goNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   const goPrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
+
+  // ── Drag / swipe support (mouse + touch, via Pointer Events) ──
+  const handlePointerDown = (e) => {
+    if (isLoading || cardStep === 0) return;
+    dragStateRef.current = {
+      startX: e.clientX,
+      currentX: e.clientX,
+      active: true,
+    };
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!dragStateRef.current.active) return;
+    dragStateRef.current.currentX = e.clientX;
+    setDragOffset(dragStateRef.current.currentX - dragStateRef.current.startX);
+  };
+
+  const endDrag = () => {
+    if (!dragStateRef.current.active) return;
+    const delta = dragStateRef.current.currentX - dragStateRef.current.startX;
+    dragStateRef.current.active = false;
+    setIsDragging(false);
+    setDragOffset(0);
+
+    const threshold = Math.max(40, cardStep * 0.2);
+    if (delta <= -threshold) {
+      goNext();
+    } else if (delta >= threshold) {
+      goPrev();
+    }
+  };
 
   return (
     <section className="trending-products-main">
@@ -181,11 +234,25 @@ const TrendingProducts = () => {
             </div>
           </div>
         ) : (
-          <div className="trending-products-viewport">
+          <div
+            className="trending-products-viewport"
+            ref={viewportRef}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onDragStart={(e) => e.preventDefault()}
+            style={{ cursor: isDragging ? "grabbing" : "grab" }}
+          >
             <div
               ref={trackRef}
               className="trending-products-track"
-              style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
+              style={{
+                transform: `translateX(-${
+                  currentIndex * cardStep - dragOffset
+                }px)`,
+                transition: isDragging ? "none" : undefined,
+              }}
             >
               {products.map((product) => (
                 <div className="trending-products-slide" key={product.id}>

@@ -4,6 +4,9 @@ import "./GamersStorePopUp.css";
 
 const GamersStorePopUp = () => {
   const [preventPopup, setPreventPopup] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
 
   return (
     <>
@@ -31,7 +34,12 @@ const GamersStorePopUp = () => {
               <span>Prevent This Pop-up</span>
             </label>
           </div>
-          <i className="bi bi-x"></i>
+          <i
+            className="bi bi-x"
+            onClick={() => setIsVisible(false)}
+            role="button"
+            aria-label="Close popup"
+          ></i>
         </div>
       </div>
     </>

@@ -10,6 +10,7 @@
   background: transparent;
   pointer-events: none;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .gs-pop-up-main {
@@ -104,4 +105,39 @@
   height: 16px;
   cursor: pointer;
   accent-color: #2563eb;
+}
+
+@media (max-width: 1024px) {
+  .gs-pop-up-main {
+    width: 90%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gs-pop-up-main {
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .gs-pop-up-main img {
+    width: 100%;
+    height: 180px;
+  }
+  .gs-pop-up-message {
+    width: 100%;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gs-pop-up-message {
+    padding: 24px 16px;
+    gap: 14px;
+  }
+  .bi-x {
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+  }
 }

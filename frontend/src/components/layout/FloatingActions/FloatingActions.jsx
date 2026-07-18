@@ -1,38 +1,49 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import styles from "./FloatingActions.css";
+import { Link, useLocation } from "react-router-dom";
+import "./FloatingActions.css";
 
 const FloatingActions = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setShowScrollTop(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    setShowScrollTop(false);
+    const heroEl = document.getElementById("hero-section");
+
+    if (heroEl) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setShowScrollTop(!entry.isIntersecting),
+        { threshold: 0 },
+      );
+      observer.observe(heroEl);
+      return () => observer.disconnect();
+    } else {
+      const handleScroll = () => setShowScrollTop(window.scrollY > 300);
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [location.pathname]);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className={styles.floatingActions}>
+    <div className="floating-actions">
       {showScrollTop && (
         <button
-          className={styles.scrollTopBtn}
+          className="floating-scroll-top-btn"
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >
-          <i class="bi bi-chevron-up"></i>
+          <i className="bi bi-chevron-up"></i>
         </button>
       )}
-      <Link
-        to="/store-locator"
-        className={styles.locatorBtn}
-        aria-label="Store Locator"
-      >
-        <i class="bi bi-geo-alt-fill"></i>
-      </Link>
-      <Link to="/checkout" className={styles.cartBtn} aria-label="View Cart">
-        <i class="bi bi-cart"></i>
+
+      <Link to="/checkout" className="floating-cart-btn" aria-label="Buy now">
+        <span className="floating-cart-icon">
+          <i className="bi bi-cart-fill"></i>
+        </span>
+        <span className="floating-cart-label">BUY NOW</span>
       </Link>
     </div>
   );

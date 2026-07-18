@@ -56,15 +56,20 @@
 
 .promo-card-cta {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: var(--space-xs);
+  background: transparent;
+  border: none;
+  padding: 0;
   color: var(--color-text-primary);
+  font-family: inherit;
   font-size: var(--font-size-sm);
   font-weight: 700;
-  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: var(--space-sm);
+  cursor: pointer;
   transition: gap 0.3s ease;
 }
 
@@ -100,31 +105,103 @@
   letter-spacing: 1px;
 }
 
+@media (max-width: 768px) {
+  .promo-card:not(.promo-card-compact) {
+    flex-direction: column;
+    min-height: auto;
+    padding: var(--space-lg);
+    text-align: center;
+  }
+  .promo-card:not(.promo-card-compact) .promo-card-content {
+    max-width: 100%;
+    align-items: center;
+  }
+  .promo-card:not(.promo-card-compact) .promo-card-image-zone {
+    width: 100%;
+    margin-top: var(--space-lg);
+  }
+  .promo-card:not(.promo-card-compact) .promo-card-image {
+    max-height: 200px;
+  }
+}
+
+/* Compact banner variant: short light card, contained image, real CTA button */
+
 .promo-card-compact {
-  aspect-ratio: 2 / 1;
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
-  min-height: auto;
+  --color-text-primary: #14161a;
+  --color-text-secondary: #5b6270;
+  --promo-card-bg: #eef1f6;
+
+  background: var(--promo-card-bg);
+  min-height: 160px;
+  align-items: stretch;
   padding: var(--space-md);
+  gap: var(--space-md);
+  overflow: hidden;
+}
+
+.promo-card-compact .promo-card-content {
+  max-width: 55%;
+  justify-content: center;
+  gap: 20px;
 }
 
 .promo-card-compact .promo-card-title {
-  font-size: var(--font-size-lg);
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.promo-card-compact .promo-card-price {
-  font-size: var(--font-size-lg);
+.promo-card-compact .promo-card-cta {
+  font-size: var(--font-size-xs);
+  margin-top: 0;
 }
 
 .promo-card-compact .promo-card-image-zone {
-  height: 100%;
-  max-height: none;
+  flex-shrink: 0;
+  width: 42%;
+  align-self: stretch;
 }
 
-.promo-card-compact .promo-card-image {
+.promo-card-compact .promo-card-image,
+.promo-card-compact .promo-card-image-placeholder {
+  width: 100%;
   height: 100%;
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
+  max-height: none;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 1024px) {
+  .promo-card-compact {
+    min-height: 150px;
+  }
+  .promo-card-compact .promo-card-content {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .promo-card-compact {
+    min-height: 140px;
+    padding: var(--space-sm);
+  }
+  .promo-card-compact .promo-card-content {
+    max-width: 55%;
+    gap: 12px;
+  }
+  .promo-card-compact .promo-card-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .promo-card-compact {
+    min-height: 130px;
+  }
+  .promo-card-compact .promo-card-title {
+    font-size: 15px;
+  }
+  .promo-card-compact .promo-card-cta {
+    font-size: 11px;
+  }
 }

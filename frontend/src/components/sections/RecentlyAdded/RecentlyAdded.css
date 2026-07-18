@@ -1,0 +1,121 @@
+.recently-added {
+  --color-bg-primary: #ffffff;
+  --color-text-primary: #121212;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+
+  width: 92%;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl) calc(var(--space-2xl) * 2);
+}
+
+.recently-added-title {
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 auto var(--space-xl);
+}
+
+.recently-added-viewport {
+  position: relative;
+  width: 100%;
+}
+
+.recently-added-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.recently-added-slide {
+  min-width: 0;
+}
+
+.recently-added-arrow {
+  display: none;
+}
+
+/* ======================================================
+   TABLET & MOBILE — JS-driven, single-card carousel.
+   Auto-advances every 2s, plus manual prev/next arrows.
+   Anything above 1024px (laptop, desktop, big screens)
+   never renders these arrows and keeps the static grid above.
+   ====================================================== */
+@media (max-width: 1024px) {
+  .recently-added {
+    padding: var(--space-xl) 0 calc(var(--space-xl) * 2);
+  }
+
+  .recently-added-title {
+    padding: 0 var(--space-md);
+  }
+
+  .recently-added-viewport {
+    overflow: hidden;
+    padding: 0 var(--space-md);
+  }
+
+  .recently-added-grid {
+    display: flex;
+    gap: var(--space-md);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .recently-added-slide {
+    flex: 0 0 100%;
+  }
+
+  .recently-added-arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-primary);
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color 0.25s ease, transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .recently-added-arrow:hover {
+    background: #f3f4f6;
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  }
+
+  .recently-added-arrow-prev {
+    left: 2px;
+  }
+
+  .recently-added-arrow-next {
+    right: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recently-added-title {
+    font-size: var(--font-size-lg);
+  }
+  .recently-added-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .recently-added {
+    padding-top: var(--space-lg);
+  }
+}
