@@ -12,10 +12,10 @@ import vid from "./../../assets/frontPageVid.mp4"
 const team = [
   { name: "Gerald Eberechukwu", role: "Managing Director", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop" },
   { name: "David Ugwuna", role: "Sales Manager", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop" },
-  { name: "John Chimezie", role: "General Manager", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop" },
-  { name: "Grace Adeshina", role: "Customer Service", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" },
-  { name: "Calvin Ibrahim", role: "Sales Associate", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" },
-  { name: "Kingsley Udeh", role: "Content Manager", img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=500&fit=crop" },
+  { name: "John Chimezie", role: "General Manager",img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=500&fit=crop" },
+  { name: "Gloria Adesiyan", role: "Customer Service", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"  },
+  { name: "Calvin Ogunsola", role: "Sales Associate", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" },
+  { name: "Kingsley Udeh", role: "Content Manager",  img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop"},
 ];
 
 const posts = [
