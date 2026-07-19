@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import samuraiPS5 from "./../../../assets/ps5.png";
+
 import "./GamingConsoleBanner.css";
 
 const slides = [
@@ -7,21 +7,21 @@ const slides = [
     title: "Latest Gaming Console",
     subtitle: 'ASUS CX70 2QF-621XPL 13"',
     price: "$950",
-    image: samuraiPS5,
+    image: null,
     animation: "from-above",
   },
   {
     title: "Next-Gen Performance",
     subtitle: 'ASUS CX70 2QF-621XPL 13"',
     price: "$1,200",
-    image: samuraiPS5,
+    image: null,
     animation: "from-below",
   },
   {
     title: "Ultimate Gaming Setup",
     subtitle: 'ASUS CX70 2QF-621XPL 13"',
     price: "$1,500",
-    image: samuraiPS5,
+    image: null,
     animation: "from-side",
   },
 ];

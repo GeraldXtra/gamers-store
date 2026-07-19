@@ -1,9 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import PS5Img from "./../../../assets/Sony_PS5_DualSense_Edge_Wireless_Controller.png";
-import cpuImg from "./../../../assets/cpu.png";
-import gtximg from "./../../../assets/Gigabyte_GeForce_GTX_1080_Ti_11GB_AORUS_XTREME_Waterforce_WB.png";
-import mouseImg from "./../../../assets/mouse.png";
-import keyboardImg from "./../../../assets/keyboard.png";
 import Button from "./../../common/Button/Button";
 import "./Hero.css";
 
@@ -14,7 +9,7 @@ const slides = [
     subtitle: "Sony PS5 DualSense Edge Wireless Controller",
     ctaText: "Shop Now",
     ctaLink: "/shop",
-    image: PS5Img,
+    image: null,
   },
   {
     id: 2,
@@ -22,7 +17,7 @@ const slides = [
     subtitle: "Gigabyte GeForce GTX 1080 Ti 11GB AORUS XTREME Waterforce WB",
     ctaText: "Shop Now",
     ctaLink: "/shop",
-    image: gtximg,
+    image: null,
   },
   {
     id: 3,
@@ -30,10 +25,10 @@ const slides = [
     subtitle: "Skytech King 95 Gaming PC Desktop AMD Ryzen 7 9800X3D NVIDIA GeForce RTX 5070 1TB Gen4 NVMe SSD 32GB DDR5 RAM, AIO Liquid Cooling Windows 11",
     ctaText: "Shop Now",
     ctaLink: "/shop",
-    image: cpuImg,
+    image: null,
   },
-  { id: 4, title: "Mechanical Keyboard", subtitle: "Gaming Keyboard", ctaText: "Shop Now", ctaLink: "/shop", image: keyboardImg },
-  { id: 5, title: "Carbon Black Optical Mouse", subtitle: "Gaming mouse", ctaText: "Shop Now", ctaLink: "/shop", image: mouseImg },
+  { id: 4, title: "Mechanical Keyboard", subtitle: "Gaming Keyboard", ctaText: "Shop Now", ctaLink: "/shop", image: null },
+  { id: 5, title: "Carbon Black Optical Mouse", subtitle: "Gaming mouse", ctaText: "Shop Now", ctaLink: "/shop", image: null },
 ];
 
 const SLIDE_INTERVAL = 3000;

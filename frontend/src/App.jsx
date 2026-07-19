@@ -12,6 +12,8 @@ import TermsAndCondition from "./pages/TermsAndConditions/TermsAndConditions";
 import StoreLocator from "./pages/StoreLocator/StoreLocator";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import FaqPage from "./pages/FAQ/Faq";
 
 function App() {
   return (
@@ -26,21 +28,14 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/about" element={<About title="About Us" />} />
-              <Route path="/faq" element={<PagePlaceholder title="FAQ" />} />
+              <Route path="/faq" element={<FaqPage />} />
               <Route path="/terms-conditions" element={<TermsAndCondition />} />
-              <Route
-                path="/contact-us"
-                element={<PagePlaceholder title="Contact Us" />}
-              />
+              <Route path="/contact-us" element={<ContactUs />} />
               <Route
                 path="/get-in-touch"
                 element={<PagePlaceholder title="Get In Touch" />}
               />
               <Route path="/store-locator" element={<StoreLocator />} />
-              <Route
-                path="/pricing-plans"
-                element={<PagePlaceholder title="Pricing Plans" />}
-              />
               <Route
                 path="/product/:id"
                 element={<PagePlaceholder title="Product Detail" />}
@@ -71,4 +66,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

@@ -1,16 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import ProductCard from "../../common/ProductCard/ProductCard";
 import "./TrendingProducts.css";
-import mechanicalKeyboard from "./../../../assets/mechanical-keyboard.png";
-import mechanicalKeyboard1 from "./../../../assets/mechancal-keyboard-1.jpg";
-import headset1 from "./../../../assets/headset-1.png";
-import headset2 from "./../../../assets/headset2.png";
-import cpu1 from "./../../../assets/cpu1.png";
-import cpu2 from "./../../../assets/cpu2.png";
-import case1 from "./../../../assets/case1.png";
-import case2 from "./../../../assets/case2.png";
-import SSD1 from "./../../../assets/SSD1.png";
-import SSD2 from "./../../../assets/SSD2.png";
 
 const allProducts = [
   {
@@ -20,7 +10,7 @@ const allProducts = [
     name: "RGB Double Shot PBT QUACK Mechanical Keyboard",
     price: 390,
     badge: null,
-    images: [mechanicalKeyboard, mechanicalKeyboard1],
+    images: [null],
   },
   {
     id: 2,
@@ -30,7 +20,7 @@ const allProducts = [
     price: 810,
     originalPrice: 890,
     badge: "SALE",
-    images: [headset1, headset2],
+    images: [null],
   },
   {
     id: 3,
@@ -39,7 +29,7 @@ const allProducts = [
     name: "CPU Air Cooler FP120 Fan Anodized Gun-Metalic Black",
     price: 155,
     badge: null,
-    images: [cpu1, cpu2],
+    images: [null],
   },
   {
     id: 4,
@@ -48,7 +38,7 @@ const allProducts = [
     name: "High-Airflow CXC-10269 Computer Case Black w/ Blue",
     price: 3850,
     badge: null,
-    images: [case1, case2],
+    images: [null],
   },
   {
     id: 5,
@@ -57,7 +47,7 @@ const allProducts = [
     name: '2TB SSD 3D TLC 6Gb/s 2.5" Internal Solid State Drive T253A300',
     price: 450,
     badge: null,
-    images: [SSD1, SSD2],
+    images: [null],
   },
   {
     id: 6,
@@ -66,7 +56,7 @@ const allProducts = [
     name: 'MBB214 147GB 10000 RPM 16MB Cache SAS 6Gb/s 2.5" Hard Drive',
     price: 2330,
     badge: null,
-    images: [SSD1, SSD2],
+    images: [null],
   },
 ];
 

@@ -1,10 +1,22 @@
-import { useState } from "react";
-import PopUpImage from "./../../../assets/gamers-store-pop-up-image.jpg";
+import { useState, useEffect } from "react";
+
 import "./GamersStorePopUp.css";
 
 const GamersStorePopUp = () => {
   const [preventPopup, setPreventPopup] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    if (isVisible) {
+      document.body.classList.add("gs-popup-open");
+    } else {
+      document.body.classList.remove("gs-popup-open");
+    }
+
+    return () => {
+      document.body.classList.remove("gs-popup-open");
+    };
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
@@ -12,7 +24,7 @@ const GamersStorePopUp = () => {
     <>
       <div className="gs-pop-up-overlay">
         <div className="gs-pop-up-main">
-          <img src={PopUpImage} alt={"Image"} />
+          <img src="image" alt="Image" />
           <div className="gs-pop-up-message">
             <h2>Welcome to Gamers Store.</h2>
             <p>

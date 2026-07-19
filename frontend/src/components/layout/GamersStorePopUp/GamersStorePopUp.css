@@ -1,3 +1,7 @@
+body.gs-popup-open {
+  overflow: hidden;
+}
+
 .gs-pop-up-overlay {
   position: fixed;
   top: 0;
