@@ -1,7 +1,7 @@
-import maestroCard from "./../../../assets/maestro.jpg";
-import masterCard from "./../../../assets/mastercard.jpg";
-import visaCard from "./../../../assets/visacard.jpg";
-import payPal from "./../../../assets/paypal.jpg";
+// import maestroCard from "./../../../assets/maestro.jpg";
+// import masterCard from "./../../../assets/mastercard.jpg";
+// import visaCard from "./../../../assets/visacard.jpg";
+// import payPal from "./../../../assets/paypal.jpg";
 import "./Footer.css";
 
 const PaymentCards = (props) => {
@@ -85,10 +85,10 @@ const Footer = () => {
           <div className="footer-message">
             <p>&copy; 2026, All Rights Reserved</p>
             <div className="footer-payment-cards">
-              <PaymentCards image={maestroCard} title="Maestro Card" />
+              {/* <PaymentCards image={maestroCard} title="Maestro Card" />
               <PaymentCards image={masterCard} title="Master Card" />
               <PaymentCards image={visaCard} title="Visa Card" />
-              <PaymentCards image={payPal} title="Paypal" />
+              <PaymentCards image={payPal} title="Paypal" /> */}
             </div>
           </div>
         </div>

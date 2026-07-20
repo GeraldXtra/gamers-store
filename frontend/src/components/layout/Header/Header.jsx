@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import WeeklyDiscountDropdown from "./WeeklyDiscountDropDown.jsx/WeeklyDiscountDropDown";
+import WeeklyDiscountDropdown from "./WeeklyDiscountDropdown/WeeklyDiscountDropdown"
 import "./Header.css";
 
 const pagesDropdownLinks = [

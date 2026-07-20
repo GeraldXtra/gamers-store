@@ -2,14 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../../utils/formatPrice";
 import "./ProductCard.css";
-<<<<<<< HEAD
- 
-const ProductCard = ({ product }) => {
-=======
 
 const ProductCard = ({ product, onRemoveFromWishlist, variant }) => {
   const isCompact = variant === "compact";
->>>>>>> 9353f1a9cd21f3d866d8accb4dcecf9826c1150c
   const [imageIndex, setImageIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(false);
  
@@ -33,28 +28,15 @@ const ProductCard = ({ product, onRemoveFromWishlist, variant }) => {
  
   const toggleWishlist = (e) => {
     e.stopPropagation();
-<<<<<<< HEAD
-    e.preventDefault();
-    setIsWishlisted((prev) => !prev);
-    // TODO: wire to wishlistService once AuthContext/CartContext exist
-=======
     if (onRemoveFromWishlist) {
       onRemoveFromWishlist(product.id);
     } else {
       setIsWishlisted((prev) => !prev);
     }
->>>>>>> 9353f1a9cd21f3d866d8accb4dcecf9826c1150c
   };
  
   const handleAddToCart = (e) => {
     e.stopPropagation();
-<<<<<<< HEAD
-    e.preventDefault();
-    // TODO: wire to CartContext once it's built
-    console.log("Add to cart:", product.name);
-  };
- 
-=======
     console.log("Add to cart:", product.name);
   };
 
@@ -123,7 +105,6 @@ const ProductCard = ({ product, onRemoveFromWishlist, variant }) => {
     );
   }
 
->>>>>>> 9353f1a9cd21f3d866d8accb4dcecf9826c1150c
   return (
     <Link to={`/product/${product.id}`} className="product-card">
       <div className="product-card-image-zone">
