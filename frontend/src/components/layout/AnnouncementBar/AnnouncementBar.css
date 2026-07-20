@@ -1,0 +1,63 @@
+.ab-main {
+  width: 100%;
+  background-color: #f3f6fb;
+  color: var(--color-text-secondary);
+}
+
+.ab-sub-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.ab-sub-main p {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0;
+}
+
+.ab-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.ab-message,
+.ab-locator,
+.ab-shipping,
+.ab-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .ab-sub-main {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .ab-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ab-sub-main p {
+    font-size: 10px;
+  }
+  .ab-links {
+    gap: 10px;
+  }
+}
