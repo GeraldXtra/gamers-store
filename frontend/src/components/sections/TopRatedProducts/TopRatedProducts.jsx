@@ -1,6 +1,7 @@
 // components/sections/TopRatedProducts/TopRatedProducts.jsx
 import ProductCard from "../../common/ProductCard/ProductCard";
 import PromoCard from "../../common/PromoCard/PromoCard";
+import mouseImg from "./../../../assets/mouse.avif";
 import "./TopRatedProducts.css";
 
 const promos = [
@@ -29,7 +30,7 @@ const products = [
     name: "Wireless PC Mouse XF-550 in Carbon Black/Grey/Green",
     price: 290,
     badge: null,
-    images: [null],
+    images: [mouseImg],
   },
   {
     id: 2,
