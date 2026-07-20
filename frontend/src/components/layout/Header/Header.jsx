@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import WeeklyDiscountDropdown from "./WeeklyDiscountDropDown.jsx/WeeklyDiscountDropDown";
+import WeeklyDiscountDropdown from "./WeeklyDiscountDropdown/WeeklyDiscountDropDown";
 import "./Header.css";
 
 const pagesDropdownLinks = [
@@ -10,7 +10,6 @@ const pagesDropdownLinks = [
   { label: "Contact Us", to: "/contact-us" },
   { label: "Get In Touch", to: "/get-in-touch" },
   { label: "Store Locator", to: "/store-locator" },
-  { label: "Pricing Plans", to: "/pricing-plans" },
 ];
 
 const categoryOptions = [
