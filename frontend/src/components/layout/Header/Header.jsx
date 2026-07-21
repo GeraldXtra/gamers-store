@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+// <<<<<<< HEAD
 import WeeklyDiscountDropdown from "./WeeklyDiscountDropdown/WeeklyDiscountDropdown"
+// =======
+// import WeeklyDiscountDropdown from "./WeeklyDiscountDropdown/WeeklyDiscountDropDown";
+// >>>>>>> 5ca5f470d23f746126720888088b580e5d4ee3ce
 import "./Header.css";
 
 const pagesDropdownLinks = [
@@ -10,7 +14,6 @@ const pagesDropdownLinks = [
   { label: "Contact Us", to: "/contact-us" },
   { label: "Get In Touch", to: "/get-in-touch" },
   { label: "Store Locator", to: "/store-locator" },
-  { label: "Pricing Plans", to: "/pricing-plans" },
 ];
 
 const categoryOptions = [

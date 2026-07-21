@@ -1,13 +1,16 @@
+// <<<<<<< HEAD
 // import maestroCard from "./../../../assets/maestro.jpg";
 // import masterCard from "./../../../assets/mastercard.jpg";
 // import visaCard from "./../../../assets/visacard.jpg";
 // import payPal from "./../../../assets/paypal.jpg";
+// =======
+// >>>>>>> 5ca5f470d23f746126720888088b580e5d4ee3ce
 import "./Footer.css";
 
-const PaymentCards = (props) => {
+const PaymentCards = () => {
   return (
     <>
-      <img src={props.image} alt={props.title} />
+      <img src="image" alt="" />
     </>
   );
 };
@@ -85,10 +88,17 @@ const Footer = () => {
           <div className="footer-message">
             <p>&copy; 2026, All Rights Reserved</p>
             <div className="footer-payment-cards">
+{/* <<<<<<< HEAD */}
               {/* <PaymentCards image={maestroCard} title="Maestro Card" />
               <PaymentCards image={masterCard} title="Master Card" />
               <PaymentCards image={visaCard} title="Visa Card" />
               <PaymentCards image={payPal} title="Paypal" /> */}
+// =======
+              <PaymentCards image="" title="Maestro Card" />
+              <PaymentCards image="" title="Master Card" />
+              <PaymentCards image="" title="Visa Card" />
+              <PaymentCards image="" title="Paypal" />
+{/* >>>>>>> 5ca5f470d23f746126720888088b580e5d4ee3ce */}
             </div>
           </div>
         </div>
