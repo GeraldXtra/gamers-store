@@ -12,32 +12,32 @@ import vid from "./../../assets/frontPageVid.mp4"
 const team = [
   { name: "Gerald Eberechukwu", role: "Managing Director", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop" },
   { name: "David Ugwuna", role: "Sales Manager", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop" },
-  { name: "John Chimezie", role: "General Manager",img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=500&fit=crop" },
-  { name: "Gloria Adesiyan", role: "Customer Service", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"  },
-  { name: "Calvin Ogunsola", role: "Sales Associate", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" },
-  { name: "Kingsley Udeh", role: "Content Manager",  img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop"},
+  { name: "John Chimezie", role: "General Manager", img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=500&fit=crop" },
+  { name: "Gloria Adesiyan", role: "Customer Service", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=cropmn" },
+  { name: "Calvin Ogunsola", role: "Sales Associate", img: "https://images.unsplash.com/photo-1584119164246-461d43e9bab3?w=400&h=500&fit=crop" },
+  { name: "Kingsley Udeh", role: "Content Manager", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" },
 ];
 
-const posts = [
-  {
-    title: "New Trends In Digital Media",
-    category: "Digital",
-    date: "June 30, 2026",
-    img: downloadJPEG,
-  },
-  {
-    title: "The Best Games For PC",
-    category: "Digital",
-    date: "June 30, 2026",
-    img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&h=350&fit=crop",
-  },
-  {
-    title: "Check Out Our New App!",
-    category: "Digital",
-    date: "June 30, 2026",
-    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=350&fit=crop",
-  },
-];
+// const posts = [
+//   {
+//     title: "New Trends In Digital Media",
+//     category: "Digital",
+//     date: "June 30, 2026",
+//     img: downloadJPEG,
+//   },
+//   {
+//     title: "The Best Games For PC",
+//     category: "Digital",
+//     date: "June 30, 2026",
+//     img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&h=350&fit=crop",
+//   },
+//   {
+//     title: "Check Out Our New App!",
+//     category: "Digital",
+//     date: "June 30, 2026",
+//     img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=350&fit=crop",
+//   },
+// ];
 
 const clients = [
   { img: partner1 },
@@ -86,7 +86,7 @@ export default function About() {
           <h1 className="au-title">More About Company History</h1>
           <div className="au-intro-text">
             <p>
-             <strong>Gamers Store</strong> is a web development project created by students of
+              <strong>Gamers Store</strong> is a web development project created by students of
               <strong> Aptech Computer Education, Ajao Estate, Lagos, Nigeria.</strong>
               The project was developed as part of our practical training to demonstrate
               our understanding of modern web technologies, responsive design, and
@@ -177,7 +177,7 @@ export default function About() {
         </section>
 
         {/* Latest Blog Posts */}
-        <section>
+        {/* <section>
           <h2 className="au-title">Latest Blog Posts</h2>
           <div className="au-blog-grid">
             {posts.map((post) => (
@@ -196,7 +196,7 @@ export default function About() {
               </article>
             ))}
           </div>
-        </section>
+        </section> */}
 
 
       </div>
